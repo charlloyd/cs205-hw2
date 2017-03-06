@@ -1,0 +1,3 @@
+[submodule "GPUcode"]
+	path = GPUcode
+	url = https://github.com/jnbntz/gpu-edu-workshops.git
