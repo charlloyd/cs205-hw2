@@ -11,6 +11,13 @@ __global__ void square(float* numbers)
 	numbers[x] = numbers[x] * numbers[x];
 }
 
+// related to printing timer
+void print_array(int *array, int size)
+{
+    printf("{ ");
+    for (int i = 0; i < size; i++)  { printf("%d ", array[i]); }
+    printf("}\n");
+}
 
 // CPU Code:
 int main (int argc, char const* argv[])
