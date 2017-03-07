@@ -1,6 +1,7 @@
-import pycuda.driver as cuda
+from pycuda import driver, compiler, gpuarray, tools
 import pycuda.autoinit
-from pycuda.compiler import SourceModule
+#from pycuda.compiler import SourceModule
+
 import numpy as np
 
 print("working")
