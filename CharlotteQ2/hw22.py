@@ -11,10 +11,10 @@ mod = SourceModule("""
         int tx = threadIdx.x;
         int ty = threadIdx.y;
         float Pvalue = 0;
-        c[ty * %(MATRIX_SIZE)s + tx] = Pvalue; 
     }
     
-    __global__ void getGlobalIdx_1D_1D(int *in_data) {
+    __global__ void getGlobalIdx_1D_1D(int *in_data) 
+    {
         int idx = threadIdx.x ;
         in_data[idx] = idx;
     }
@@ -24,13 +24,14 @@ print("still working...")
 
 MATRIX_SIZE = 2
 
+# initialize matrices
 a_cpu = np.random.randn(MATRIX_SIZE, MATRIX_SIZE).astype(np.float32)
 b_cpu = np.random.randn(MATRIX_SIZE, MATRIX_SIZE).astype(np.float32)
 c_cpu = np.dot(a_cpu, b_cpu)
 
+# send matrices to GPU
 a_gpu = gpuarray.to_gpu(a_cpu)
 b_gpu = gpuarray.to_gpu(b_cpu)
-
 c_gpu = gpuarray.empty((MATRIX_SIZE, MATRIX_SIZE), np.float32)
 
 # compile & call function
