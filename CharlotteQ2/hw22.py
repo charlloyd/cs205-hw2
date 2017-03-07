@@ -1,6 +1,7 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
 # copied from: https://andreask.cs.illinois.edu/PyCuda/Examples/MatrixmulSimple
+# copied from: https://andreask.cs.illinois.edu/PyCuda/Examples/MatrixmulTiled
 
 from __future__ import division
 import numpy as np
