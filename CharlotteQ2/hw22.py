@@ -28,11 +28,11 @@ b_gpu = gpuarray.to_gpu(b_cpu)
 c_gpu = gpuarray.empty((MATRIX_SIZE, MATRIX_SIZE), np.float32)
 
 
-
+# compile & call function
 matrixmul = mod.get_function("MatrixMulKernel")
 matrixmul(a_gpu, b_gpu, c_gpu, block = (MATRIX_SIZE, MATRIX_SIZE, 1))
 
-print the results
+# print the results
 print("Matrix A (GPU):")
 print(a_gpu.get())
 print("Matrix B (GPU):")
