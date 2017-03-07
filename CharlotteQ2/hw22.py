@@ -6,39 +6,13 @@ import numpy as np
 print("working")
 
 mod = SourceModule("""
-    __global__ void doublify(float *a)
+    __global__ void MatrixMulKernel(float *a, float *b, float *c)
     {
-        int idx = threadIdx.x + threadIdx.y*4;
-        a[idx] *= 2;
+        int tx = threadIdx.x;
+        int ty = threadIdx.y;
+        float Pvalue = 0;
     }
     
-    __global__ void parallel_sum_gpu(float *in_data, float *out_data) {
-        extern __shared__ float data[];
-        unsigned int tid = blockIdx.x*blockDim.x + threadIdx.x;
-        data[tid] = in_data[tid];
-        __syncthreads();
-        for (unsigned int s=(blockDim.x*gridDim.x)/2; s>32; s>>=1) {
-            if (tid < s) {
-                data[tid] += data[tid + s];
-            }
-            __syncthreads();
-        }
-        if (tid < 32) {
-            data[tid] += data[tid + 32];
-            __syncthreads();
-            data[tid] += data[tid + 16];
-            __syncthreads();
-            data[tid] += data[tid + 8];
-            __syncthreads();
-            data[tid] += data[tid + 4];
-            __syncthreads();
-            data[tid] += data[tid + 2];
-            __syncthreads();
-            data[tid] += data[tid + 1];
-        }
-        
-        if (tid == 0) out_data[0] = data[0];
-    }
     
     __global__ void getGlobalIdx_1D_1D(int *in_data) {
         int idx = threadIdx.x ;
