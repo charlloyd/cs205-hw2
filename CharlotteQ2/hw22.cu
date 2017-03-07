@@ -1,7 +1,4 @@
-"""
-Multiplies two square matrices together using a *single* block of threads and
-global memory only. Each thread computes one element of the resulting matrix.
-"""
+""" Multiplies two square matrices together using a *single* block of threads and global memory only. Each thread computes one element of the resulting matrix. """
 
 import numpy as np
 from pycuda import driver, compiler, gpuarray, tools
@@ -16,29 +13,25 @@ __global__ void MatrixMulKernel(float *a, float *b, float *c)
 int tx = threadIdx.x;
 int ty = threadIdx.y;
 
-// Pvalue is used to store the element of the matrix
-// that is computed by the thread
+// Pvalue is used to store the element of the matrix that is computed by the thread
 float Pvalue = 0;
 
-// Each thread loads one row of M and one column of N,
-//   to produce one element of P.
+// Each thread loads one row of M and one column of N, to produce one element of P.
 for (int k = 0; k < %(MATRIX_SIZE)s; ++k) {
 float Aelement = a[ty * %(MATRIX_SIZE)s + k];
 float Belement = b[k * %(MATRIX_SIZE)s + tx];
 Pvalue += Aelement * Belement;
 }
 
-// Write the matrix to device memory;
-// each thread writes one element
+// Write the matrix to device memory; each thread writes one element
 c[ty * %(MATRIX_SIZE)s + tx] = Pvalue;
 }
 """
 
-# define the (square) matrix size
-#  note that we'll only use *one* block of threads here
-#  as a consequence this number (squared) can't exceed max_threads,
-#  see http://documen.tician.de/pycuda/util.html#pycuda.tools.DeviceData
-#  for more information on how to get this number for your device
+// define the (square) matrix size, note that we'll only use *one* block of threads here
+//  as a consequence this number (squared) can't exceed max_threads,
+//  see http://documen.tician.de/pycuda/util.html#pycuda.tools.DeviceData
+
 MATRIX_SIZE = 2
 
 // create two random square matrices
