@@ -1,6 +1,10 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
 
+####
+# copied from: https://wiki.tiker.net/PyCuda/Examples/MatrixmulTiled
+###
+
 """
     Multiplies two square matrices together using a *single* block of threads and
     global memory only. Each thread computes one element of the resulting matrix.
