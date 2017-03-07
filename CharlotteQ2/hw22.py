@@ -7,7 +7,11 @@ import numpy as np
 from pycuda import driver, compiler, gpuarray, tools
 import pycuda.autoinit
 
-kernel_code_template = """
+###########################################
+###     
+###########################################
+
+simple_kernel_code_template = """
     __global__ void MatMulSimpleKernel(float *a, float *b, float *c)
     {
     int tx = threadIdx.x;
@@ -21,8 +25,47 @@ kernel_code_template = """
     }
     
     c[ty * %(MATRIX_SIZE)s + tx] = Pvalue;
+    }    
+    """
+
+MATRIX_SIZES = [8,16,32,64]
+
+for MATRIX_SIZE in MATRIX_SIZES:
+
+    # initialize matrices
+    a_cpu = np.random.randn(MATRIX_SIZE, MATRIX_SIZE).astype(np.float32)
+    b_cpu = np.random.randn(MATRIX_SIZE, MATRIX_SIZE).astype(np.float32)
+    c_cpu = np.dot(a_cpu, b_cpu)
+
+    # send matrices to GPU
+    a_gpu = gpuarray.to_gpu(a_cpu)
+    b_gpu = gpuarray.to_gpu(b_cpu)
+    c_gpu = gpuarray.empty((MATRIX_SIZE, MATRIX_SIZE), np.float32)
+
+    # compile & call function
+    simple_kernel_code = simple_kernel_code_template % {
+        'MATRIX_SIZE': MATRIX_SIZE
     }
-    
+    mod = compiler.SourceModule(simple_kernel_code)
+    matmuls = mod.get_function("MatMulSimpleKernel")
+    matmuls(a_gpu, b_gpu, c_gpu, block=(MATRIX_SIZE, MATRIX_SIZE, 1))
+
+    print("Matrix A (GPU):")
+    #print(a_gpu.get())
+    print("Matrix B (GPU):")
+    #print(b_gpu.get())
+    print("Matrix C (GPU):")
+    #print(c_gpu.get())
+    print("CPU-GPU difference:")
+    print(c_cpu - c_gpu.get())
+
+    np.allclose(c_cpu, c_gpu.get())
+
+###########################################
+###     
+###########################################
+
+block_kernel_code_template = """
     __global__ void MatMulBlockKernel(float *A, float *B, float *C)
     {
     
@@ -80,47 +123,6 @@ kernel_code_template = """
     C[c + wB * ty + tx] = Csub;
     }        
     """
-
-###########################################
-###     
-###########################################
-
-MATRIX_SIZES = [8,16,32,64]
-
-for MATRIX_SIZE in MATRIX_SIZES:
-
-    # initialize matrices
-    a_cpu = np.random.randn(MATRIX_SIZE, MATRIX_SIZE).astype(np.float32)
-    b_cpu = np.random.randn(MATRIX_SIZE, MATRIX_SIZE).astype(np.float32)
-    c_cpu = np.dot(a_cpu, b_cpu)
-
-    # send matrices to GPU
-    a_gpu = gpuarray.to_gpu(a_cpu)
-    b_gpu = gpuarray.to_gpu(b_cpu)
-    c_gpu = gpuarray.empty((MATRIX_SIZE, MATRIX_SIZE), np.float32)
-
-    # compile & call function
-    kernel_code = kernel_code_template % {
-        'MATRIX_SIZE': MATRIX_SIZE
-    }
-    mod = compiler.SourceModule(kernel_code)
-    matmuls = mod.get_function("MatMulSimpleKernel")
-    matmuls(a_gpu, b_gpu, c_gpu, block=(MATRIX_SIZE, MATRIX_SIZE, 1))
-
-    print("Matrix A (GPU):")
-    #print(a_gpu.get())
-    print("Matrix B (GPU):")
-    #print(b_gpu.get())
-    print("Matrix C (GPU):")
-    #print(c_gpu.get())
-    print("CPU-GPU difference:")
-    print(c_cpu - c_gpu.get())
-
-    np.allclose(c_cpu, c_gpu.get())
-
-###########################################
-###     
-###########################################
     
 # define the (square) matrix size
 MATRIX_SIZE = 4
@@ -145,11 +147,11 @@ b_gpu = gpuarray.to_gpu(b_cpu)
 c_gpu = gpuarray.empty((MATRIX_SIZE, MATRIX_SIZE), np.float32)
 
 # get the kernel code from the template by specifying the constants MATRIX_SIZE and BLOCK_SIZE
-kernel_code = kernel_code_template % {
+block_kernel_code = block_kernel_code_template % {
     'MATRIX_SIZE': MATRIX_SIZE,
     'BLOCK_SIZE': BLOCK_SIZE,
 }
-mod = compiler.SourceModule(kernel_code)
+mod = compiler.SourceModule(block_kernel_code)
 matrixmulblock = mod.get_function("MatMulBlockKernel")
 matrixmulblock(a_gpu, b_gpu,c_gpu,grid = (MATRIX_SIZE // TILE_SIZE, MATRIX_SIZE // TILE_SIZE),block = (TILE_SIZE, TILE_SIZE, 1))
 
