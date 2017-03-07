@@ -1,14 +1,9 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
-
-####
 # copied from: https://andreask.cs.illinois.edu/PyCuda/Examples/MatrixmulSimple
-###
 
 import numpy as np
 from pycuda import driver, compiler, gpuarray, tools
-
-# -- initialize the device
 import pycuda.autoinit
 
 kernel_code_template = """
@@ -27,7 +22,6 @@ kernel_code_template = """
     c[ty * %(MATRIX_SIZE)s + tx] = Pvalue;
     }
     """
-
 
 MATRIX_SIZES = [8,16]
 
@@ -51,7 +45,6 @@ for MATRIX_SIZE in MATRIX_SIZES:
     matrixmul = mod.get_function("MatrixMulKernel")
     matrixmul(a_gpu, b_gpu, c_gpu, block = (MATRIX_SIZE, MATRIX_SIZE, 1))
 
-    # print the results
     print("Matrix A (GPU):")
     #print(a_gpu.get())
     print("Matrix B (GPU):")
