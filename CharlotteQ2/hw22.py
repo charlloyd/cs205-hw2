@@ -1,29 +1,45 @@
-from pycuda import driver, gpuarray, tools
-import pycuda.autoinit
-from pycuda.compiler import SourceModule
+#!/usr/bin/env python
+# -*- coding: utf-8 -*-
+
+####
+# copied from: https://andreask.cs.illinois.edu/PyCuda/Examples/MatrixmulSimple
+###
+
+"""
+    Multiplies two square matrices together using a *single* block of threads and
+    global memory only. Each thread computes one element of the resulting matrix.
+    """
 
 import numpy as np
+from pycuda import driver, compiler, gpuarray, tools
 
-print("working")
+# -- initialize the device
+import pycuda.autoinit
 
-mod = SourceModule("""
+kernel_code_template = """
     __global__ void MatrixMulKernel(float *a, float *b, float *c)
     {
-        int tx = threadIdx.x;
-        int ty = threadIdx.y;
-        float Pvalue = 0;
-        c[ty * %(MATRIX_SIZE)s + tx] = Pvalue;
+    // 2D Thread ID (assuming that only *one* block will be executed)
+    int tx = threadIdx.x;
+    int ty = threadIdx.y;
+    
+    // Pvalue is used to store the element of the matrix
+    // that is computed by the thread
+    float Pvalue = 0;
+    
+    // Each thread loads one row of M and one column of N,
+    //   to produce one element of P.
+    for (int k = 0; k < %(MATRIX_SIZE)s; ++k) {
+    float Aelement = a[ty * %(MATRIX_SIZE)s + k];
+    float Belement = b[k * %(MATRIX_SIZE)s + tx];
+    Pvalue += Aelement * Belement;
     }
     
-    __global__ void getGlobalIdx_1D_1D(int *in_data) 
-    {
-        int idx = threadIdx.x ;
-        in_data[idx] = idx;
+    // Write the matrix to device memory;
+    // each thread writes one element
+    c[ty * %(MATRIX_SIZE)s + tx] = Pvalue;
     }
-    """)
-
-print("still working...")
-
+    """
 MATRIX_SIZE = 2
 
 # initialize matrices
@@ -37,6 +53,9 @@ b_gpu = gpuarray.to_gpu(b_cpu)
 c_gpu = gpuarray.empty((MATRIX_SIZE, MATRIX_SIZE), np.float32)
 
 # compile & call function
+kernel_code = kernel_code_template % {
+    'MATRIX_SIZE': MATRIX_SIZE
+}
 matrixmul = mod.get_function("MatrixMulKernel")
 print("compiled")
 matrixmul(a_gpu, b_gpu, c_gpu, block = (MATRIX_SIZE, MATRIX_SIZE, 1))
