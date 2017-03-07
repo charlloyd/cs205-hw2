@@ -5,20 +5,6 @@
 # copied from: https://andreask.cs.illinois.edu/PyCuda/Examples/MatrixmulSimple
 ###
 
-
-
-#!/usr/bin/env python
-# -*- coding: utf-8 -*-
-
-####
-# copied from: https://andreask.cs.illinois.edu/PyCuda/Examples/MatrixmulSimple
-###
-
-"""
-    Multiplies two square matrices together using a *single* block of threads and
-    global memory only. Each thread computes one element of the resulting matrix.
-    """
-
 import numpy as np
 from pycuda import driver, compiler, gpuarray, tools
 
