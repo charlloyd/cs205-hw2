@@ -1,3 +1,5 @@
+// copied directly from: https://github.com/udacity/cs344
+
 #ifndef __GPU_TIMER_H__
 #define __GPU_TIMER_H__
 
