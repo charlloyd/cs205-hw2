@@ -29,7 +29,7 @@ kernel_code_template = """
     """
 
 
-MATRIX_SIZES = [2,3,2**2]
+MATRIX_SIZES = [2**3,2**6]
 
 for MATRIX_SIZE in MATRIX_SIZES:
 
@@ -53,11 +53,11 @@ for MATRIX_SIZE in MATRIX_SIZES:
 
     # print the results
     print("Matrix A (GPU):")
-    print(a_gpu.get())
+    #print(a_gpu.get())
     print("Matrix B (GPU):")
-    print(b_gpu.get())
+    #print(b_gpu.get())
     print("Matrix C (GPU):")
-    print(c_gpu.get())
+    #print(c_gpu.get())
     print("CPU-GPU difference:")
     print(c_cpu - c_gpu.get())
 
