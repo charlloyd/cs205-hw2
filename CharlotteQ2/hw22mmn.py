@@ -2,7 +2,7 @@
 # -*- coding: utf-8 -*-
 
 ####
-# copied from: https://wiki.tiker.net/PyCuda/Examples/MatrixmulTiled
+# copied from: https://andreask.cs.illinois.edu/PyCuda/Examples/MatrixmulSimple
 ###
 
 """
