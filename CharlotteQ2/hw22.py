@@ -3,6 +3,8 @@ import pycuda.autoinit
 from pycuda.compiler import SourceModule
 import numpy as np
 
+print("working")
+
 mod = SourceModule("""
     __global__ void MatrixMulKernel(float *a, float *b, float *c) {
     int tx = threadIdx.x;
@@ -16,7 +18,7 @@ mod = SourceModule("""
     c[ty * %(MATRIX_SIZE)s + tx] = Pvalue; }
 """)
 
-print("working...")
+print("still working...")
 
 MATRIX_SIZE = 2
 
