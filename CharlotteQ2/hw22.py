@@ -7,7 +7,7 @@ from pycuda import driver, compiler, gpuarray, tools
 import pycuda.autoinit
 
 kernel_code_template = """
-    __global__ void MatrixMulKernel(float *a, float *b, float *c)
+    __global__ void MatMulSimpleKernel(float *a, float *b, float *c)
     {
     int tx = threadIdx.x;
     int ty = threadIdx.y;
@@ -23,7 +23,7 @@ kernel_code_template = """
     }
     """
 
-MATRIX_SIZES = [8,16]
+MATRIX_SIZES = [8,16,32]
 
 for MATRIX_SIZE in MATRIX_SIZES:
 
@@ -42,8 +42,8 @@ for MATRIX_SIZE in MATRIX_SIZES:
         'MATRIX_SIZE': MATRIX_SIZE
     }
     mod = compiler.SourceModule(kernel_code)
-    matrixmul = mod.get_function("MatrixMulKernel")
-    matrixmul(a_gpu, b_gpu, c_gpu, block = (MATRIX_SIZE, MATRIX_SIZE, 1))
+    matmuls = mod.get_function("MatMulSimpleKernel")
+    matmuls(a_gpu, b_gpu, c_gpu, block = (MATRIX_SIZE, MATRIX_SIZE, 1))
 
     print("Matrix A (GPU):")
     #print(a_gpu.get())
