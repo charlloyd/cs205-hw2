@@ -1,6 +1,3 @@
-#!/usr/bin/env python
-# -*- coding: utf-8 -*-
-
 """
 Multiplies two square matrices together using a *single* block of threads and
 global memory only. Each thread computes one element of the resulting matrix.
@@ -9,7 +6,7 @@ global memory only. Each thread computes one element of the resulting matrix.
 import numpy as np
 from pycuda import driver, compiler, gpuarray, tools
 
-# -- initialize the device
+// -- initialize the device
 import pycuda.autoinit
 
 kernel_code_template = """
@@ -51,36 +48,36 @@ b_cpu = np.random.randn(MATRIX_SIZE, MATRIX_SIZE).astype(np.float32)
 // compute reference on the CPU to verify GPU computation
 c_cpu = np.dot(a_cpu, b_cpu)
 
-# transfer host (CPU) memory to device (GPU) memory
+// transfer host (CPU) memory to device (GPU) memory
 a_gpu = gpuarray.to_gpu(a_cpu)
 b_gpu = gpuarray.to_gpu(b_cpu)
 
-# create empty gpu array for the result (C = A * B)
+// create empty gpu array for the result (C = A * B)
 c_gpu = gpuarray.empty((MATRIX_SIZE, MATRIX_SIZE), np.float32)
 
-# get the kernel code from the template
-# by specifying the constant MATRIX_SIZE
+// get the kernel code from the template
+// by specifying the constant MATRIX_SIZE
 kernel_code = kernel_code_template % {
 'MATRIX_SIZE': MATRIX_SIZE
 }
 
-# compile the kernel code
+// compile the kernel code
 mod = compiler.SourceModule(kernel_code)
 
-# get the kernel function from the compiled module
+// get the kernel function from the compiled module
 matrixmul = mod.get_function("MatrixMulKernel")
 
-# call the kernel on the card
+// call the kernel on the card
 matrixmul(
-# inputs
+// inputs
 a_gpu, b_gpu,
-# output
+// output
 c_gpu,
-# (only one) block of MATRIX_SIZE x MATRIX_SIZE threads
+// (only one) block of MATRIX_SIZE x MATRIX_SIZE threads
 block = (MATRIX_SIZE, MATRIX_SIZE, 1),
 )
 
-# print the results
+// print the results
 print "-" * 80
 print "Matrix A (GPU):"
 print a_gpu.get()
