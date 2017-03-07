@@ -4,6 +4,7 @@
 
 from __future__ import division
 import numpy as np
+from numpy import linalg as la
 from pycuda import driver, compiler, gpuarray, tools
 import pycuda.autoinit
 
