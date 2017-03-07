@@ -144,30 +144,14 @@ b_gpu = gpuarray.to_gpu(b_cpu)
 # create empty gpu array for the result (C = A * B)
 c_gpu = gpuarray.empty((MATRIX_SIZE, MATRIX_SIZE), np.float32)
 
-# get the kernel code from the template
-# by specifying the constants MATRIX_SIZE and BLOCK_SIZE
+# get the kernel code from the template by specifying the constants MATRIX_SIZE and BLOCK_SIZE
 kernel_code = kernel_code_template % {
     'MATRIX_SIZE': MATRIX_SIZE,
     'BLOCK_SIZE': BLOCK_SIZE,
 }
-
-# compile the kernel code
 mod = compiler.SourceModule(kernel_code)
-
-# get the kernel function from the compiled module
-matrixmul = mod.get_function("MatrixMulKernel")
-
-# call the kernel on the card
-matrixmul(
-          # inputs
-          a_gpu, b_gpu,
-          # output
-          c_gpu,
-          # grid of multiple blocks
-          grid = (MATRIX_SIZE // TILE_SIZE, MATRIX_SIZE // TILE_SIZE),
-          # block of multiple threads
-          block = (TILE_SIZE, TILE_SIZE, 1),
-          )
+matrixmulblock = mod.get_function("MatMulBlockKernel")
+matrixmulblock(a_gpu, b_gpu,c_gpu,grid = (MATRIX_SIZE // TILE_SIZE, MATRIX_SIZE // TILE_SIZE),block = (TILE_SIZE, TILE_SIZE, 1))
 
 # print the results
 print "-" * 80
