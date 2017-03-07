@@ -1,5 +1,13 @@
 #include <iostream>
+#include <stdio.h>
+
 #include "gputimer.h"
+void print_array(int *array, int size)
+{
+printf("{ ");
+for (int i = 0; i < size; i++)  { printf("%d ", array[i]); }
+printf("}\n");
+}
 
 // Kernel:
 __global__ void square(float* numbers)
@@ -9,14 +17,6 @@ __global__ void square(float* numbers)
 	
 	// square the number:
 	numbers[x] = numbers[x] * numbers[x];
-}
-
-// related to printing timer
-void print_array(int *array, int size)
-{
-    printf("{ ");
-    for (int i = 0; i < size; i++)  { printf("%d ", array[i]); }
-    printf("}\n");
 }
 
 // CPU Code:
