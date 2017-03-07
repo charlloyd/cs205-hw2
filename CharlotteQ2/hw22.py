@@ -61,7 +61,7 @@ c_gpu = gpuarray.empty((MATRIX_SIZE, MATRIX_SIZE), np.float32)
 # get the kernel code from the template
 # by specifying the constant MATRIX_SIZE
 kernel_code = kernel_code_template % {
-    'MATRIX_SIZE': MATRIX_SIZE
+'MATRIX_SIZE': MATRIX_SIZE
 }
 
 # compile the kernel code
