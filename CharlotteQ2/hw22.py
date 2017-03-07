@@ -31,7 +31,7 @@ kernel_code_template = """
 
 MATRIX_SIZES = [2,3]
 
-for n in MATRIX_SIZES:
+for MATRIX_SIZE in MATRIX_SIZES:
 
     # initialize matrices
     a_cpu = np.random.randn(MATRIX_SIZE, MATRIX_SIZE).astype(np.float32)
