@@ -4,7 +4,7 @@ from pycuda.compiler import SourceModule
 import numpy as np
 import time
 
-sizes =  [2**6, 2**10, 2**20, 2**32]
+sizes =  [2**2, 2**3]
 
 mod = SourceModule("""
     __global__ void doublify(float *a)
