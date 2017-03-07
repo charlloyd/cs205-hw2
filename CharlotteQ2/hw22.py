@@ -14,7 +14,7 @@ mod = SourceModule("""
     float Belement = b[k * %(MATRIX_SIZE)s + tx];
     Pvalue += Aelement * Belement; }
     c[ty * %(MATRIX_SIZE)s + tx] = Pvalue; }
-    """)
+""")
 
 print("working...")
 
