@@ -28,7 +28,7 @@ simple_kernel_code_template = """
     }    
     """
 
-MATRIX_SIZES = [8,16,32,64]
+MATRIX_SIZES = [8,16,32]
 
 for MATRIX_SIZE in MATRIX_SIZES:
 
