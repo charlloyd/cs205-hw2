@@ -9,7 +9,7 @@ from pycuda import driver, compiler, gpuarray, tools
 import pycuda.autoinit
 
 ###########################################
-###     
+### Define kernel functions in ... C?
 ###########################################
 
 simple_kernel_code_template = """
@@ -89,7 +89,7 @@ block_kernel_code_template = """
     """
 
 ###########################################
-###     
+### loop through code for various matrix sizes    
 ###########################################
 
 MATRIX_SIZES = [8,16,32]
