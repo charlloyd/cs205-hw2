@@ -14,3 +14,7 @@ source new-modules.sh
 module load cuda/7.5-fasrc01
 
 time ./square > output.txt 2> errors.txt
+
+
+
+srun --pty --x11=first -p holyseasgpu --mem 4000 -t 0-5:00 -n 1 -N 1 /bin/bash
