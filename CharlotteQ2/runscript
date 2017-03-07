@@ -13,5 +13,4 @@
 source new-modules.sh
 module load cuda/7.5-fasrc01
 
-
 time ./square > output.txt 2> errors.txt
