@@ -105,9 +105,7 @@ for MATRIX_SIZE in MATRIX_SIZES:
     }
     mod = compiler.SourceModule(kernel_code)
     matmuls = mod.get_function("MatMulSimpleKernel")
-    bdim = (MATRIX_SIZE, MATRIX_SIZE, 1)
-    gdim = ()
-    matmuls(a_gpu, b_gpu, c_gpu, block=bdim, grid=gdim)
+    matmuls(a_gpu, b_gpu, c_gpu, block=(MATRIX_SIZE, MATRIX_SIZE, 1))
 
     print("Matrix A (GPU):")
     #print(a_gpu.get())
