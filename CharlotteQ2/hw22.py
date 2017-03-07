@@ -11,7 +11,7 @@ mod = SourceModule("""
         int tx = threadIdx.x;
         int ty = threadIdx.y;
         float Pvalue = 0;
-        c[ty * %(MATRIX_SIZE)s + tx] = Pvalue;
+        c[0] = Pvalue;
     }
     
     __global__ void getGlobalIdx_1D_1D(int *in_data) 
