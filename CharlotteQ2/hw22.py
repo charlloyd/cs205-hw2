@@ -29,7 +29,7 @@ kernel_code_template = """
     """
 
 
-MATRIX_SIZES = [2**3,2**6]
+MATRIX_SIZES = [8,16]
 
 for MATRIX_SIZE in MATRIX_SIZES:
 
