@@ -2,8 +2,8 @@
 # -*- coding: utf-8 -*-
 # copied from: https://andreask.cs.illinois.edu/PyCuda/Examples/MatrixmulSimple
 
-import numpy as np
 from __future__ import division
+import numpy as np
 from pycuda import driver, compiler, gpuarray, tools
 import pycuda.autoinit
 
@@ -81,6 +81,10 @@ kernel_code_template = """
     }        
     """
 
+###########################################
+###     
+###########################################
+
 MATRIX_SIZES = [8,16,32,64]
 
 for MATRIX_SIZE in MATRIX_SIZES:
@@ -115,3 +119,73 @@ for MATRIX_SIZE in MATRIX_SIZES:
     print(c_cpu - c_gpu.get())
 
     np.allclose(c_cpu, c_gpu.get())
+
+###########################################
+###     
+###########################################
+    
+# define the (square) matrix size
+MATRIX_SIZE = 4
+
+# define size of blocks and tiles sub-matrix
+# (we assume that the block size is same as tile size)
+TILE_SIZE = 2
+BLOCK_SIZE = TILE_SIZE
+
+# create two random square matrices
+a_cpu = np.random.randn(MATRIX_SIZE, MATRIX_SIZE).astype(np.float32)
+b_cpu = np.random.randn(MATRIX_SIZE, MATRIX_SIZE).astype(np.float32)
+
+# compute reference on the CPU to verify GPU computation
+c_cpu = np.dot(a_cpu, b_cpu)
+
+# transfer host (CPU) memory to device (GPU) memory
+a_gpu = gpuarray.to_gpu(a_cpu)
+b_gpu = gpuarray.to_gpu(b_cpu)
+
+# create empty gpu array for the result (C = A * B)
+c_gpu = gpuarray.empty((MATRIX_SIZE, MATRIX_SIZE), np.float32)
+
+# get the kernel code from the template
+# by specifying the constants MATRIX_SIZE and BLOCK_SIZE
+kernel_code = kernel_code_template % {
+    'MATRIX_SIZE': MATRIX_SIZE,
+    'BLOCK_SIZE': BLOCK_SIZE,
+}
+
+# compile the kernel code
+mod = compiler.SourceModule(kernel_code)
+
+# get the kernel function from the compiled module
+matrixmul = mod.get_function("MatrixMulKernel")
+
+# call the kernel on the card
+matrixmul(
+          # inputs
+          a_gpu, b_gpu,
+          # output
+          c_gpu,
+          # grid of multiple blocks
+          grid = (MATRIX_SIZE // TILE_SIZE, MATRIX_SIZE // TILE_SIZE),
+          # block of multiple threads
+          block = (TILE_SIZE, TILE_SIZE, 1),
+          )
+
+# print the results
+print "-" * 80
+print "Matrix A (GPU):"
+print a_gpu.get()
+
+print "-" * 80
+print "Matrix B (GPU):"
+print b_gpu.get()
+
+print "-" * 80
+print "Matrix C (GPU):"
+print c_gpu.get()
+
+print "-" * 80
+print "CPU-GPU difference:"
+print c_cpu - c_gpu.get()
+print "L2 norm:", la.norm(c_cpu - c_gpu.get())
+np.allclose(c_cpu, c_gpu.get())
