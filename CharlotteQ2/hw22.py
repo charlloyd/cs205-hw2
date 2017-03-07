@@ -93,7 +93,7 @@ block_kernel_code_template = """
 ### loop through code for various matrix sizes    
 ###########################################
 
-MATRIX_SIZES = [8,16,32]
+MATRIX_SIZES = [8,16,32,64]
 
 for MATRIX_SIZE in MATRIX_SIZES:
 
@@ -113,16 +113,16 @@ for MATRIX_SIZE in MATRIX_SIZES:
     }
     mod = compiler.SourceModule(simple_kernel_code)
     matmuls = mod.get_function("MatMulSimpleKernel")
-    matmuls(a_gpu, b_gpu, c_gpu, block=(MATRIX_SIZE, MATRIX_SIZE, 1))
+    #matmuls(a_gpu, b_gpu, c_gpu, block=(MATRIX_SIZE, MATRIX_SIZE, 1))
 
     print("Matrix A (GPU):")
-    print(a_gpu.get())
+    #print(a_gpu.get())
     print("Matrix B (GPU):")
-    print(b_gpu.get())
+    #print(b_gpu.get())
     print("Matrix C (GPU):")
-    print(c_gpu.get())
+    #print(c_gpu.get())
     print("CPU-GPU difference:")
-    print(c_cpu - c_gpu.get())
+    #print(c_cpu - c_gpu.get())
 
     ###########################################
     
