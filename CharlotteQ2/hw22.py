@@ -5,6 +5,15 @@
 # copied from: https://andreask.cs.illinois.edu/PyCuda/Examples/MatrixmulSimple
 ###
 
+
+
+#!/usr/bin/env python
+# -*- coding: utf-8 -*-
+
+####
+# copied from: https://andreask.cs.illinois.edu/PyCuda/Examples/MatrixmulSimple
+###
+
 """
     Multiplies two square matrices together using a *single* block of threads and
     global memory only. Each thread computes one element of the resulting matrix.
@@ -40,6 +49,8 @@ kernel_code_template = """
     c[ty * %(MATRIX_SIZE)s + tx] = Pvalue;
     }
     """
+
+
 MATRIX_SIZE = 2
 
 # initialize matrices
@@ -56,10 +67,9 @@ c_gpu = gpuarray.empty((MATRIX_SIZE, MATRIX_SIZE), np.float32)
 kernel_code = kernel_code_template % {
     'MATRIX_SIZE': MATRIX_SIZE
 }
+mod = compiler.SourceModule(kernel_code)
 matrixmul = mod.get_function("MatrixMulKernel")
-print("compiled")
 matrixmul(a_gpu, b_gpu, c_gpu, block = (MATRIX_SIZE, MATRIX_SIZE, 1))
-print("called")
 
 # print the results
 print("Matrix A (GPU):")
