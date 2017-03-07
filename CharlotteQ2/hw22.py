@@ -16,6 +16,8 @@ mod = SourceModule("""
     c[ty * %(MATRIX_SIZE)s + tx] = Pvalue; }
     """)
 
+print("working...")
+
 MATRIX_SIZE = 2
 
 a_cpu = np.random.randn(MATRIX_SIZE, MATRIX_SIZE).astype(np.float32)
@@ -27,10 +29,11 @@ b_gpu = gpuarray.to_gpu(b_cpu)
 
 c_gpu = gpuarray.empty((MATRIX_SIZE, MATRIX_SIZE), np.float32)
 
-
 # compile & call function
 matrixmul = mod.get_function("MatrixMulKernel")
+print("compiled")
 matrixmul(a_gpu, b_gpu, c_gpu, block = (MATRIX_SIZE, MATRIX_SIZE, 1))
+print("called")
 
 # print the results
 print("Matrix A (GPU):")
