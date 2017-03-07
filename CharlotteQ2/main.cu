@@ -48,7 +48,7 @@ int main (int argc, char const* argv[])
 	for(unsigned i=0; i<N; i++)
 		std::cout<<data[i]<<"^2 = "<<squared[i]<<"\n";
 
-    printf("Time elapsed = %g ms\n", timer.Elapsed());
+    print("Time elapsed = %g ms\n", timer.Elapsed());
 	
 	return 0;
 }
