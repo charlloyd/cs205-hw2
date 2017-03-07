@@ -29,43 +29,6 @@ simple_kernel_code_template = """
     }    
     """
 
-MATRIX_SIZES = [8,16,32]
-
-for MATRIX_SIZE in MATRIX_SIZES:
-
-    # initialize matrices
-    a_cpu = np.random.randn(MATRIX_SIZE, MATRIX_SIZE).astype(np.float32)
-    b_cpu = np.random.randn(MATRIX_SIZE, MATRIX_SIZE).astype(np.float32)
-    c_cpu = np.dot(a_cpu, b_cpu)
-
-    # send matrices to GPU
-    a_gpu = gpuarray.to_gpu(a_cpu)
-    b_gpu = gpuarray.to_gpu(b_cpu)
-    c_gpu = gpuarray.empty((MATRIX_SIZE, MATRIX_SIZE), np.float32)
-
-    # compile & call function
-    simple_kernel_code = simple_kernel_code_template % {
-        'MATRIX_SIZE': MATRIX_SIZE
-    }
-    mod = compiler.SourceModule(simple_kernel_code)
-    matmuls = mod.get_function("MatMulSimpleKernel")
-    matmuls(a_gpu, b_gpu, c_gpu, block=(MATRIX_SIZE, MATRIX_SIZE, 1))
-
-    print("Matrix A (GPU):")
-    #print(a_gpu.get())
-    print("Matrix B (GPU):")
-    #print(b_gpu.get())
-    print("Matrix C (GPU):")
-    #print(c_gpu.get())
-    print("CPU-GPU difference:")
-    print(c_cpu - c_gpu.get())
-
-    np.allclose(c_cpu, c_gpu.get())
-
-###########################################
-###     
-###########################################
-
 block_kernel_code_template = """
     __global__ void MatMulBlockKernel(float *A, float *B, float *C)
     {
@@ -124,53 +87,69 @@ block_kernel_code_template = """
     C[c + wB * ty + tx] = Csub;
     }        
     """
+
+###########################################
+###     
+###########################################
+
+MATRIX_SIZES = [8,16,32]
+
+for MATRIX_SIZE in MATRIX_SIZES:
+
+    # initialize matrices
+    a_cpu = np.random.randn(MATRIX_SIZE, MATRIX_SIZE).astype(np.float32)
+    b_cpu = np.random.randn(MATRIX_SIZE, MATRIX_SIZE).astype(np.float32)
+    c_cpu = np.dot(a_cpu, b_cpu)
+
+    # send matrices to GPU
+    a_gpu = gpuarray.to_gpu(a_cpu)
+    b_gpu = gpuarray.to_gpu(b_cpu)
+    c_gpu = gpuarray.empty((MATRIX_SIZE, MATRIX_SIZE), np.float32)
+
+    # compile & call function
+    simple_kernel_code = simple_kernel_code_template % {
+        'MATRIX_SIZE': MATRIX_SIZE
+    }
+    mod = compiler.SourceModule(simple_kernel_code)
+    matmuls = mod.get_function("MatMulSimpleKernel")
+    matmuls(a_gpu, b_gpu, c_gpu, block=(MATRIX_SIZE, MATRIX_SIZE, 1))
+
+    print("Matrix A (GPU):")
+    print(a_gpu.get())
+    print("Matrix B (GPU):")
+    print(b_gpu.get())
+    print("Matrix C (GPU):")
+    print(c_gpu.get())
+    print("CPU-GPU difference:")
+    print(c_cpu - c_gpu.get())
+
+    ###########################################
     
-# define the (square) matrix size
-MATRIX_SIZE = 4
+    TILE_SIZE = 2
+    BLOCK_SIZE = TILE_SIZE
 
-# define size of blocks and tiles sub-matrix
-# (we assume that the block size is same as tile size)
-TILE_SIZE = 2
-BLOCK_SIZE = TILE_SIZE
+    # send matrices to GPU
+    a_gpu = gpuarray.to_gpu(a_cpu)
+    b_gpu = gpuarray.to_gpu(b_cpu)
+    c_gpu = gpuarray.empty((MATRIX_SIZE, MATRIX_SIZE), np.float32)
 
-# create two random square matrices
-a_cpu = np.random.randn(MATRIX_SIZE, MATRIX_SIZE).astype(np.float32)
-b_cpu = np.random.randn(MATRIX_SIZE, MATRIX_SIZE).astype(np.float32)
+    # compile & call function
+    block_kernel_code = block_kernel_code_template % {
+        'MATRIX_SIZE': MATRIX_SIZE,
+        'BLOCK_SIZE': BLOCK_SIZE,
+    }
+    mod = compiler.SourceModule(block_kernel_code)
+    matrixmulblock = mod.get_function("MatMulBlockKernel")
+    matrixmulblock(a_gpu, b_gpu,c_gpu,grid = (MATRIX_SIZE // TILE_SIZE, MATRIX_SIZE // TILE_SIZE),block = (TILE_SIZE, TILE_SIZE, 1))
 
-# compute reference on the CPU to verify GPU computation
-c_cpu = np.dot(a_cpu, b_cpu)
-
-# transfer host (CPU) memory to device (GPU) memory
-a_gpu = gpuarray.to_gpu(a_cpu)
-b_gpu = gpuarray.to_gpu(b_cpu)
-
-# create empty gpu array for the result (C = A * B)
-c_gpu = gpuarray.empty((MATRIX_SIZE, MATRIX_SIZE), np.float32)
-
-# get the kernel code from the template by specifying the constants MATRIX_SIZE and BLOCK_SIZE
-block_kernel_code = block_kernel_code_template % {
-    'MATRIX_SIZE': MATRIX_SIZE,
-    'BLOCK_SIZE': BLOCK_SIZE,
-}
-mod = compiler.SourceModule(block_kernel_code)
-matrixmulblock = mod.get_function("MatMulBlockKernel")
-matrixmulblock(a_gpu, b_gpu,c_gpu,grid = (MATRIX_SIZE // TILE_SIZE, MATRIX_SIZE // TILE_SIZE),block = (TILE_SIZE, TILE_SIZE, 1))
-
-# print the results
-print "-" * 80
-print "Matrix A (GPU):"
-print a_gpu.get()
-
-print "-" * 80
-print "Matrix B (GPU):"
-print b_gpu.get()
-
-print "-" * 80
-print "Matrix C (GPU):"
-print c_gpu.get()
-
-print "-" * 80
-print "CPU-GPU difference:"
-print c_cpu - c_gpu.get()
-print "L2 norm:", la.norm(c_cpu - c_gpu.get())
-np.allclose(c_cpu, c_gpu.get())
+    print "Matrix A (GPU):"
+    print a_gpu.get()
+    print "Matrix B (GPU):"
+    print b_gpu.get()
+    print "Matrix C (GPU):"
+    print c_gpu.get()
+    print "CPU-GPU difference:"
+    print c_cpu - c_gpu.get()
+    print "L2 norm:", la.norm(c_cpu - c_gpu.get())
+    
+    np.allclose(c_cpu, c_gpu.get())
