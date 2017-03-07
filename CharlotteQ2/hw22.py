@@ -11,11 +11,6 @@ mod = SourceModule("""
         int tx = threadIdx.x;
         int ty = threadIdx.y;
         float Pvalue = 0;
-        for (int k = 0; k < %(MATRIX_SIZE)s; ++k) {
-            float Aelement = a[ty * %(MATRIX_SIZE)s + k];
-            float Belement = b[k * %(MATRIX_SIZE)s + tx];
-            Pvalue += Aelement * Belement; 
-        }
         c[ty * %(MATRIX_SIZE)s + tx] = Pvalue; 
     }
     
