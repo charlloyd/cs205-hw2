@@ -1,6 +1,6 @@
-from pycuda import driver, compiler, gpuarray, tools
+from pycuda import driver, gpuarray, tools
 import pycuda.autoinit
-#from pycuda.compiler import SourceModule
+from pycuda.compiler import SourceModule
 
 import numpy as np
 
