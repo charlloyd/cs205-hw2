@@ -1,26 +1,20 @@
-import numpy as np
 import pycuda.driver as cuda
 import pycuda.autoinit
 from pycuda.compiler import SourceModule
+import numpy as np
 
 mod = SourceModule("""
-    __global__ void MatrixMulKernel(float *a, float *b, float *c)
-    {
+    __global__ void MatrixMulKernel(float *a, float *b, float *c) {
         int tx = threadIdx.x;
         int ty = threadIdx.y;
         float Pvalue = 0;
 
-        // Each thread loads one row of M and one column of N, to produce one element of P.
-        for (int k = 0; k < %(MATRIX_SIZE)s; ++k)
-        {
+        for (int k = 0; k < %(MATRIX_SIZE)s; ++k) {
             float Aelement = a[ty * %(MATRIX_SIZE)s + k];
             float Belement = b[k * %(MATRIX_SIZE)s + tx];
-            Pvalue += Aelement * Belement;
-        }
-
-        c[ty * %(MATRIX_SIZE)s + tx] = Pvalue;
-    }
-    """)
+            Pvalue += Aelement * Belement; }
+        c[ty * %(MATRIX_SIZE)s + tx] = Pvalue; }
+""")
 
 MATRIX_SIZE = 2
 
