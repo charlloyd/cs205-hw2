@@ -44,11 +44,11 @@ c[ty * %(MATRIX_SIZE)s + tx] = Pvalue;
 #  for more information on how to get this number for your device
 MATRIX_SIZE = 2
 
-# create two random square matrices
+// create two random square matrices
 a_cpu = np.random.randn(MATRIX_SIZE, MATRIX_SIZE).astype(np.float32)
 b_cpu = np.random.randn(MATRIX_SIZE, MATRIX_SIZE).astype(np.float32)
 
-# compute reference on the CPU to verify GPU computation
+// compute reference on the CPU to verify GPU computation
 c_cpu = np.dot(a_cpu, b_cpu)
 
 # transfer host (CPU) memory to device (GPU) memory
