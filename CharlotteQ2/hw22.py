@@ -9,6 +9,7 @@ Created on Mon Mar  6 13:39:09 2017
 import pycuda.driver as cuda
 import pycuda.autoinit
 from pycuda.compiler import SourceModule
+from pycuda import driver, compiler, gpuarray, tools
 
 data =  [2**6, 2**10, 2**16]
 

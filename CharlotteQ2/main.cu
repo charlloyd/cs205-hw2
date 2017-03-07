@@ -1,4 +1,5 @@
 #include <iostream>
+#include "gputimer.h"
 
 // Kernel:
 __global__ void square(float* numbers)
@@ -14,6 +15,8 @@ __global__ void square(float* numbers)
 // CPU Code:
 int main (int argc, char const* argv[])
 {
+    GpuTimer timer;
+
 	const unsigned int N = 100;	// N numbers in array
 
 	float data[N];		// array that contains numbers to be squared
@@ -31,7 +34,9 @@ int main (int argc, char const* argv[])
 	cudaMemcpy(pDevData, &data, sizeof(data), cudaMemcpyHostToDevice);
 		
 	// execute kernel function on GPU:
+    timer.Start();
 	square<<<10, 10>>>(pDevData);
+    timer.Stop();
 	
 	// copy data back from CUDA Device to 'squared' array:
 	cudaMemcpy(&squared, pDevData, sizeof(squared), cudaMemcpyDeviceToHost);
@@ -42,6 +47,8 @@ int main (int argc, char const* argv[])
 	// output results:
 	for(unsigned i=0; i<N; i++)
 		std::cout<<data[i]<<"^2 = "<<squared[i]<<"\n";
+
+    printf("Time elapsed = %g ms\n", timer.Elapsed());
 	
 	return 0;
 }
