@@ -1,9 +1,7 @@
 #2. Analysis of Parallel Algorithms [10%]
 1. Define iso-efficiency function for an ideally scalable parallel system.
 
-2. Scaled speed-up is defined as the speedup obtained when the problem size is increased linearly with the 
-number of processing elements; that is, if W is chosen as a base problem size for a single processing element, then
-$$scaled speedup = \frac{pW}{T_p(pW, p)}$$
+2. Scaled speed-up is defined as the speedup obtained when the problem size is increased linearly with the number of processing elements; that is, if W is chosen as a base problem size for a single processing element, then $$scaled speedup = \frac{pW}{T_p(pW, p)}$$
 
 For the problem of adding $n$ numbers on $p$ processing elements, assume that it takes 20 time units to communicate a 
 number between two processing elements, and that it takes one unit of time to add two numbers. Plot the 
