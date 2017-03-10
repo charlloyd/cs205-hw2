@@ -115,7 +115,7 @@ scale = [scaled_speed(i,comm, W_t,n*i) for i in p]
 stand = [standard_speed(i, comm, W_t,n) for i in p]
 axes = plt.gca()
 plt.plot(p, stand, '-b', label='Standard Speed-up')
-plt.plot(p, scale, '-r', label='Scaled Speed=up')
+plt.plot(p, scale, '-r', label='Scaled Speed-up')
 # plt.yscale('log')
 axes.set_ylim([0,np.ceil(max(scale + stand))+1])
 axes.set_xlim([0,max(p)])
@@ -134,12 +134,52 @@ plt.savefig("figures/speedup2.png")
   \end{figure}
 \end{enumerate}
 
-{\huge \item \textbf{Analysis of Parallel Algorithms [10\%]}}\\
+{\huge \item \textbf{Parallel Matrix Algorithms in CUDA and OpenAcc [40\%]}}
 
+In this problem we will revisit the tiling transformation from HW1 and investigate parallel algorithm design and implementation
+for Matrix Multiplication in the SIMT programming model for Manycore GPU architecture.\\
 
+We have studied two ways to construct parallel programs for GPU architectures. CUDA programs use explicit parallel programming
+to express parallelism and to specify locality. OpenAcc, in contrast, provides a directive based mechanism to implement parallel
+programs through an automatic compilation system that generates parallel programs from annotated sequential programs. This offers a 
+programming approach to rapidly implement different versions of parallel programs which simplifies the task of exploring the solution 
+space for an efficient parallel program.\\
 
+In this programming task you will implement and optimize the tiled Matrix Multiplication in the two programming languages as follows:\\
 
+\begin{enumerate}[label=\arabic*.]
+\item \pline{CUDA}
+
+ \begin{enumerate}[label=(\alph*)]
+    \item \pline{First benchmark a naive version (nested three loop matrix multiplication CUDA parallel program) against the reference implementation in CUBLAS. Generate a performance plot of throughput (GFlop/s) for problem sizes $n = 26,210,216$ for single precision floating point real numbers and compare against CUBLAS.}\\
+  
+  \item \pline{Implement a tiled parallel matrix multiplication program using the same relationship as before: make the block size $b$ as large as possible so that $3b^2 \leq M$, where $M$ is the size of the "fast" memory on a GPU node.}
+  
+  \item \pline{Benchmark for problem sizes $n = 2^6, 2^{10}, 2^{16}.$}
+  \end{enumerate}
+  
+\item \pline{OpenAcc}
+  \begin{enumerate}[label=(\alph*)]
+    \item \pline{Implement a tiled parallel matrix multiplication using gang (thread blocks), vector (threads) and tile features for loop scheduling and optimization.}\\
+  
+    \item \pline{Tune the performance by varying gang, vector and tile parameters. Carefully consider the vector size in relation to warp size.}
+  
+    \item \pline{Benchmark for problem sizes $n = 2^6, 2^{10}, 2^{16}.$}
+  
+    \item \pline{What is the search space of the above brute force approach for very large problem size $n$? Is there a better way to search the space of parallel programs in (b) than brute force? Briefly discuss in the write-up.}
+    \end{enumerate}
+  
 \end{enumerate}
+\end{enumerate}
+
+Submission: A write-up covering the following aspects uploaded as a single PDF file.
+  \begin{itemize}
+   \item A short one page description of the diffrent design principles that was used to develop successive versions of the parallel program.
+   \item The optimizations used and the results obtained with reference to performane plots.
+   \item Code listing and test cases (runs from single vs parallel to validate correctness of outputs).
+   \item Performance plots of throughput (GFlop/s). The plot should indicate the peak throughput achievable on the GPU node and should compare the two versions of the implementations.
+  \end{itemize}
+
 
 
 \end{document}

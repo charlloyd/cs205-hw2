@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.17 (TeX Live 2016) (preloaded format=pdflatex 2016.5.22)  10 MAR 2017 00:45
+This is pdfTeX, Version 3.14159265-2.6-1.40.17 (TeX Live 2016) (preloaded format=pdflatex 2016.5.22)  10 MAR 2017 10:07
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -404,40 +404,113 @@ File: figures/speedup2.png Graphic file (type png)
 Package pdftex.def Info: figures/speedup2.png used on input line 184.
 (pdftex.def)             Requested size: 422.77664pt x 317.08252pt.
 
-Underfull \hbox (badness 10000) in paragraph at lines 190--191
+Underfull \hbox (badness 10000) in paragraph at lines 192--194
+
+ []
+
+[4 <./figures/speedup2.png>]
+Underfull \hbox (badness 10000) in paragraph at lines 195--200
 
  []
 
 
+Underfull \hbox (badness 10000) in paragraph at lines 201--202
+
+ []
+
+
+Overfull \hbox (6.79999pt too wide) in paragraph at lines 204--205
+[][] 
+ []
+
+
+Overfull \hbox (6.79999pt too wide) in paragraph at lines 207--208
+[][] 
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 207--208
+
+ []
+
+
+Overfull \hbox (6.79999pt too wide) in paragraph at lines 209--210
+[][] 
+ []
+
+
+Overfull \hbox (6.79999pt too wide) in paragraph at lines 211--212
+[][] 
+ []
+
+
+Overfull \hbox (6.79999pt too wide) in paragraph at lines 214--215
+[][] 
+ []
+
+
+Overfull \hbox (6.79999pt too wide) in paragraph at lines 216--217
+[][] 
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 216--217
+
+ []
+
+
+Overfull \hbox (6.79999pt too wide) in paragraph at lines 218--219
+[][] 
+ []
+
+
+Overfull \hbox (6.79999pt too wide) in paragraph at lines 220--221
+[][] 
+ []
+
+
+Overfull \hbox (6.79999pt too wide) in paragraph at lines 222--223
+[][] 
+ []
+
+LaTeX Font Info:    Try loading font information for OMS+cmr on input line 230.
+
+(/usr/local/texlive/2016/texmf-dist/tex/latex/base/omscmr.fd
+File: omscmr.fd 2014/09/29 v2.5h Standard LaTeX font definitions
+)
+LaTeX Font Info:    Font shape `OMS/cmr/m/n' in size <10> not available
+(Font)              Font shape `OMS/cmsy/m/n' tried instead on input line 230.
+
+
 AED: lastpage setting LastPage
-[4 <./figures/speedup2.png>] (./HW2_Q2_EricDunipace.aux) ) 
+[5] (./HW2_Q2_EricDunipace.aux) ) 
 Here is how much of TeX's memory you used:
- 4005 strings out of 493014
- 56369 string characters out of 6133351
+ 4027 strings out of 493014
+ 56741 string characters out of 6133351
  134255 words of memory out of 5000000
- 7454 multiletter control sequences out of 15000+600000
+ 7473 multiletter control sequences out of 15000+600000
  11984 words of font info for 47 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
  38i,9n,32p,648b,448s stack positions out of 5000i,500n,10000p,200000b,80000s
-</usr/local/texlive/2
-016/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx10.pfb></usr/local/texlive/20
-16/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx12.pfb></usr/local/texlive/201
-6/texmf-dist/fonts/type1/public/amsfonts/cm/cmex10.pfb></usr/local/texlive/2016
-/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi10.pfb></usr/local/texlive/2016/
-texmf-dist/fonts/type1/public/amsfonts/cm/cmmi5.pfb></usr/local/texlive/2016/te
-xmf-dist/fonts/type1/public/amsfonts/cm/cmmi7.pfb></usr/local/texlive/2016/texm
-f-dist/fonts/type1/public/amsfonts/cm/cmr10.pfb></usr/local/texlive/2016/texmf-
-dist/fonts/type1/public/amsfonts/cm/cmr12.pfb></usr/local/texlive/2016/texmf-di
-st/fonts/type1/public/amsfonts/cm/cmr17.pfb></usr/local/texlive/2016/texmf-dist
-/fonts/type1/public/amsfonts/cm/cmr5.pfb></usr/local/texlive/2016/texmf-dist/fo
-nts/type1/public/amsfonts/cm/cmr7.pfb></usr/local/texlive/2016/texmf-dist/fonts
-/type1/public/amsfonts/cm/cmsy10.pfb></usr/local/texlive/2016/texmf-dist/fonts/
-type1/public/amsfonts/cm/cmsy7.pfb></usr/local/texlive/2016/texmf-dist/fonts/ty
-pe1/public/amsfonts/cm/cmtt10.pfb>
-Output written on HW2_Q2_EricDunipace.pdf (4 pages, 174100 bytes).
+</usr/local/texlive/2016/texmf-dist/fonts/type
+1/public/amsfonts/cm/cmbx10.pfb></usr/local/texlive/2016/texmf-dist/fonts/type1
+/public/amsfonts/cm/cmbx12.pfb></usr/local/texlive/2016/texmf-dist/fonts/type1/
+public/amsfonts/cm/cmex10.pfb></usr/local/texlive/2016/texmf-dist/fonts/type1/p
+ublic/amsfonts/cm/cmmi10.pfb></usr/local/texlive/2016/texmf-dist/fonts/type1/pu
+blic/amsfonts/cm/cmmi5.pfb></usr/local/texlive/2016/texmf-dist/fonts/type1/publ
+ic/amsfonts/cm/cmmi7.pfb></usr/local/texlive/2016/texmf-dist/fonts/type1/public
+/amsfonts/cm/cmr10.pfb></usr/local/texlive/2016/texmf-dist/fonts/type1/public/a
+msfonts/cm/cmr12.pfb></usr/local/texlive/2016/texmf-dist/fonts/type1/public/ams
+fonts/cm/cmr17.pfb></usr/local/texlive/2016/texmf-dist/fonts/type1/public/amsfo
+nts/cm/cmr5.pfb></usr/local/texlive/2016/texmf-dist/fonts/type1/public/amsfonts
+/cm/cmr7.pfb></usr/local/texlive/2016/texmf-dist/fonts/type1/public/amsfonts/cm
+/cmsy10.pfb></usr/local/texlive/2016/texmf-dist/fonts/type1/public/amsfonts/cm/
+cmsy7.pfb></usr/local/texlive/2016/texmf-dist/fonts/type1/public/amsfonts/cm/cm
+tt10.pfb>
+Output written on HW2_Q2_EricDunipace.pdf (5 pages, 185739 bytes).
 PDF statistics:
- 76 PDF objects out of 1000 (max. 8388607)
- 53 compressed objects within 1 object stream
+ 79 PDF objects out of 1000 (max. 8388607)
+ 55 compressed objects within 1 object stream
  0 named destinations out of 1000 (max. 500000)
  6 words of extra memory for PDF output out of 10000 (max. 10000000)
 
