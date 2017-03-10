@@ -6,8 +6,8 @@ for Matrix Multiplication in the SIMT programming model for Manycore GPU archite
 We have studied two ways to construct parallel programs for GPU architectures. CUDA programs use explicit parallel programming
 to express parallelism and to specify locality. OpenAcc, in contrast, provides a directive based mechanism to implement parallel
 programs through an automatic compilation system that generates parallel programs from annotated sequential programs. This offers a 
-programming approach to rapidly implement di↵erent versions of parallel programs which simplifies the task of exploring the solution 
-space for an e icient parallel program.
+programming approach to rapidly implement different versions of parallel programs which simplifies the task of exploring the solution 
+space for an efficient parallel program.
 
 In this programming task you will implement and optimize the tiled Matrix Multiplication in the two programming languages as follows:
 
@@ -37,9 +37,7 @@ In this programming task you will implement and optimize the tiled Matrix Multip
   
   
 Submission: A write-up covering the following aspects uploaded as a single PDF file.
-* A short one page description of the di↵erent design principles that was used to develop successive 
-versions of the parallel program.
+* A short one page description of the di↵erent design principles that was used to develop successive versions of the parallel program.
 * The optimizations used and the results obtained with reference to performane plots.
 * Code listing and test cases (runs from single vs parallel to validate correctness of outputs).
-* Performance plots of throughput (GFlop/s). The plot should indicate the peak throughput achievable on the 
-GPU node and should compare the two versions of the implementations.
+* Performance plots of throughput (GFlop/s). The plot should indicate the peak throughput achievable on the GPU node and should compare the two versions of the implementations.
