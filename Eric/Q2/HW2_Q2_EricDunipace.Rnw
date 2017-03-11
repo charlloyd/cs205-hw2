@@ -151,7 +151,7 @@ In this programming task you will implement and optimize the tiled Matrix Multip
 \item \pline{CUDA}
 
  \begin{enumerate}[label=(\alph*)]
-    \item \pline{First benchmark a naive version (nested three loop matrix multiplication CUDA parallel program) against the reference implementation in CUBLAS. Generate a performance plot of throughput (GFlop/s) for problem sizes $n = 26,210,216$ for single precision floating point real numbers and compare against CUBLAS.}\\
+    \item \pline{First benchmark a naive version (nested three loop matrix multiplication CUDA parallel program) against the reference implementation in CUBLAS. Generate a performance plot of throughput (GFlop/s) for problem sizes $n = 2^6, 2^{10}, 2^{16}$ for single precision floating point real numbers and compare against CUBLAS.}\\
   
   \item \pline{Implement a tiled parallel matrix multiplication program using the same relationship as before: make the block size $b$ as large as possible so that $3b^2 \leq M$, where $M$ is the size of the "fast" memory on a GPU node.}
   
