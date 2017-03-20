@@ -69,7 +69,7 @@ block_kernel_code_template = """
 ### loop through code for various matrix sizes    
 ###########################################
 
-MATRIX_SIZES = [2**6,2**10]
+MATRIX_SIZES = [2,2**2,2**6,2**10]
 simple_t = []
 block_t = []
 
