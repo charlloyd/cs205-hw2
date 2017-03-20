@@ -93,8 +93,8 @@ for MATRIX_SIZE in MATRIX_SIZES:
         'MATRIX_SIZE': MATRIX_SIZE
     }
     mod = compiler.SourceModule(simple_kernel_code)
-    matmuls = mod.get_function("MatMulSimpleKernel")
-    matmuls(a_gpu, b_gpu, c_gpu, block=(MATRIX_SIZE, MATRIX_SIZE, 1))
+    matmulsimple = mod.get_function("MatMulSimpleKernel")
+    matmulsimple(a_gpu, b_gpu, c_gpu, block=(MATRIX_SIZE, MATRIX_SIZE, 1))
 
     print("---")
     print("SIMPLE")
@@ -126,8 +126,8 @@ for MATRIX_SIZE in MATRIX_SIZES:
         'BLOCK_SIZE': BLOCK_SIZE,
     }
     mod = compiler.SourceModule(block_kernel_code)
-    matrixmulblock = mod.get_function("MatMulBlockKernel")
-    matrixmulblock(a_gpu, b_gpu,c_gpu,grid = (MATRIX_SIZE // TILE_SIZE, MATRIX_SIZE // TILE_SIZE),block = (TILE_SIZE, TILE_SIZE, 1))
+    matxmulblock = mod.get_function("MatMulBlockKernel")
+    matmulblock(a_gpu, b_gpu,c_gpu,grid = (MATRIX_SIZE // TILE_SIZE, MATRIX_SIZE // TILE_SIZE),block = (TILE_SIZE, TILE_SIZE, 1))
 
     print("---")
     print("BLOCK")
