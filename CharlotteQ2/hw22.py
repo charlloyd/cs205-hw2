@@ -69,7 +69,7 @@ block_kernel_code_template = """
 ### loop through code for various matrix sizes    
 ###########################################
 
-MATRIX_SIZES = [2**6,2**10,2**14]
+MATRIX_SIZES = [2**6,2**10]
 simple_t = []
 block_t = []
 
@@ -144,3 +144,8 @@ for MATRIX_SIZE in MATRIX_SIZES:
     #print("L2 norm:", la.norm(c_cpu - c_gpu.get()))
     
     np.allclose(c_cpu, c_gpu.get())
+
+print("---")
+print(MATRIX_SIZES)
+print(simple_t)
+print(block_t)
