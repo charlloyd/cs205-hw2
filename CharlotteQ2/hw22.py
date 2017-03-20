@@ -1,16 +1,17 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
-# copied from: https://andreask.cs.illinois.edu/PyCuda/Examples/MatrixmulSimple
-# copied from: https://andreask.cs.illinois.edu/PyCuda/Examples/MatrixmulTiled
+# adapted from: https://andreask.cs.illinois.edu/PyCuda/Examples/MatrixmulSimple
+# adapted from: https://andreask.cs.illinois.edu/PyCuda/Examples/MatrixmulTiled
 
 from __future__ import division
 import numpy as np
 from numpy import linalg as la
 from pycuda import driver, compiler, gpuarray, tools
 import pycuda.autoinit
+import time
 
 ###########################################
-### Define kernel functions in ... C?
+### Define kernel functions in C
 ###########################################
 
 simple_kernel_code_template = """
@@ -29,11 +30,9 @@ simple_kernel_code_template = """
     c[ty * %(MATRIX_SIZE)s + tx] = Pvalue;
     }    
     """
-
 block_kernel_code_template = """
     __global__ void MatMulBlockKernel(float *A, float *B, float *C)
     {
-    
     const uint wA = %(MATRIX_SIZE)s;
     const uint wB = %(MATRIX_SIZE)s;
     const uint bx = blockIdx.x;
@@ -71,6 +70,8 @@ block_kernel_code_template = """
 ###########################################
 
 MATRIX_SIZES = [2**6,2**10,2**14]
+simple_t = []
+block_t = []
 
 for MATRIX_SIZE in MATRIX_SIZES:
     
@@ -79,9 +80,10 @@ for MATRIX_SIZE in MATRIX_SIZES:
     # initialize matrices
     a_cpu = np.random.randn(MATRIX_SIZE, MATRIX_SIZE).astype(np.float32)
     b_cpu = np.random.randn(MATRIX_SIZE, MATRIX_SIZE).astype(np.float32)
-    c_cpu = np.dot(a_cpu, b_cpu)
-
+    #c_cpu = np.dot(a_cpu, b_cpu)
+    
     # send matrices to GPU
+    start = time.time()
     a_gpu = gpuarray.to_gpu(a_cpu)
     b_gpu = gpuarray.to_gpu(b_cpu)
     c_gpu = gpuarray.empty((MATRIX_SIZE, MATRIX_SIZE), np.float32)
@@ -92,18 +94,20 @@ for MATRIX_SIZE in MATRIX_SIZES:
     }
     mod = compiler.SourceModule(simple_kernel_code)
     matmuls = mod.get_function("MatMulSimpleKernel")
-    #matmuls(a_gpu, b_gpu, c_gpu, block=(MATRIX_SIZE, MATRIX_SIZE, 1))
+    matmuls(a_gpu, b_gpu, c_gpu, block=(MATRIX_SIZE, MATRIX_SIZE, 1))
 
     print("---")
     print("SIMPLE")
-    print("Matrix A (GPU):")
-    #print(a_gpu.get())
-    print("Matrix B (GPU):")
-    #print(b_gpu.get())
     print("Matrix C (GPU):")
-    #print(c_gpu.get())
-    print("CPU-GPU difference:")
-    print(c_cpu - c_gpu.get())
+    print(c_gpu.get())
+    simple_t.append(time.time()-start)
+    
+    print("Matrix A (GPU):")
+    print(a_gpu.get())
+    print("Matrix B (GPU):")
+    print(b_gpu.get())
+    #print("CPU-GPU difference:")
+    #print(c_cpu - c_gpu.get())
 
     ###########################################
     
@@ -111,6 +115,7 @@ for MATRIX_SIZE in MATRIX_SIZES:
     BLOCK_SIZE = TILE_SIZE
 
     # send matrices to GPU
+    start = time.time()
     a_gpu = gpuarray.to_gpu(a_cpu)
     b_gpu = gpuarray.to_gpu(b_cpu)
     c_gpu = gpuarray.empty((MATRIX_SIZE, MATRIX_SIZE), np.float32)
@@ -126,14 +131,16 @@ for MATRIX_SIZE in MATRIX_SIZES:
 
     print("---")
     print("BLOCK")
-    print("Matrix A (GPU):")
-    #print(a_gpu.get())
-    print("Matrix B (GPU):")
-    #print(b_gpu.get())
     print("Matrix C (GPU):")
-    #print(c_gpu.get())
-    print("CPU-GPU difference:")
-    print(c_cpu - c_gpu.get())
-    print("L2 norm:", la.norm(c_cpu - c_gpu.get()))
+    print(c_gpu.get())    
+    block_t.append(time.time()-start)
+    
+    print("Matrix A (GPU):")
+    print(a_gpu.get())
+    print("Matrix B (GPU):")
+    print(b_gpu.get())
+    #print("CPU-GPU difference:")
+    #print(c_cpu - c_gpu.get())
+    #print("L2 norm:", la.norm(c_cpu - c_gpu.get()))
     
     np.allclose(c_cpu, c_gpu.get())
