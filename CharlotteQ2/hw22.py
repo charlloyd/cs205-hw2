@@ -93,7 +93,7 @@ block_kernel_code_template = """
 ### loop through code for various matrix sizes    
 ###########################################
 
-MATRIX_SIZES = [8,16,32,64]
+MATRIX_SIZES = [8,16,32,64,1024]
 
 for MATRIX_SIZE in MATRIX_SIZES:
     
