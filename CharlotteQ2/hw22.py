@@ -70,7 +70,7 @@ block_kernel_code_template = """
 ### loop through code for various matrix sizes    
 ###########################################
 
-MATRIX_SIZES = [2,2**2,2**3,2**4,2**5]
+MATRIX_SIZES = [2,2**2,2**3,2**4,2**5,2**6,2**10]
 simple_t = []
 block_t = []
 
@@ -95,7 +95,7 @@ for MATRIX_SIZE in MATRIX_SIZES:
     }
     mod = compiler.SourceModule(simple_kernel_code)
     matmulsimple = mod.get_function("MatMulSimpleKernel")
-    matmulsimple(a_gpu, b_gpu, c_gpu, block=(MATRIX_SIZE, MATRIX_SIZE, 1))
+    #matmulsimple(a_gpu, b_gpu, c_gpu, block=(MATRIX_SIZE, MATRIX_SIZE, 1))
 
     print("---")
     print("SIMPLE")
@@ -151,7 +151,7 @@ print(MATRIX_SIZES)
 print(simple_t)
 print(block_t)
 
-with open('matmul.csv', 'a') as f:
+with open('matmul-b.csv', 'a') as f:
     writer = csv.writer(f, delimiter = ',')
     writer.writerow([str(i) for i in MATRIX_SIZES])
     writer.writerow([str(i) for i in simple_t])
