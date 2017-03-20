@@ -126,7 +126,7 @@ for MATRIX_SIZE in MATRIX_SIZES:
         'BLOCK_SIZE': BLOCK_SIZE,
     }
     mod = compiler.SourceModule(block_kernel_code)
-    matxmulblock = mod.get_function("MatMulBlockKernel")
+    matmulblock = mod.get_function("MatMulBlockKernel")
     matmulblock(a_gpu, b_gpu,c_gpu,grid = (MATRIX_SIZE // TILE_SIZE, MATRIX_SIZE // TILE_SIZE),block = (TILE_SIZE, TILE_SIZE, 1))
 
     print("---")
