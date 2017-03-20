@@ -143,7 +143,7 @@ for MATRIX_SIZE in MATRIX_SIZES:
     #print(c_cpu - c_gpu.get())
     #print("L2 norm:", la.norm(c_cpu - c_gpu.get()))
     
-    np.allclose(c_cpu, c_gpu.get())
+    #np.allclose(c_cpu, c_gpu.get())
 
 print("---")
 print(MATRIX_SIZES)
