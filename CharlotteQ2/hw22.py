@@ -96,6 +96,8 @@ block_kernel_code_template = """
 MATRIX_SIZES = [8,16,32,64]
 
 for MATRIX_SIZE in MATRIX_SIZES:
+    
+    print(MATRIX_SIZE)
 
     # initialize matrices
     a_cpu = np.random.randn(MATRIX_SIZE, MATRIX_SIZE).astype(np.float32)
