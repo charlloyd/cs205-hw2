@@ -149,3 +149,10 @@ print("---")
 print(MATRIX_SIZES)
 print(simple_t)
 print(block_t)
+
+with open('matmul.csv', 'a') as f:
+    writer = csv.writer(f, delimiter = ',')
+    writer.writerow([str(i) for i in MATRIX_SIZES])
+    writer.writerow([str(i) for i in simple_t])
+    writer.writerow([str(i) for i in block_t])
+    f.close()
