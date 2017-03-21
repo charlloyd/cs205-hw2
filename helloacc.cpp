@@ -1,8 +1,7 @@
 #include <iostream>
-#include <random>
 
-// compile with "pgcc -o helloacc -acc -Minfo helloacc.cpp"
-// execute with "./helloworld"
+// compile with "g++ helloacc.cpp -o helloacc"
+// execute with "pgcc -acc helloacc.cpp -Minfo=accel"
 
 using namespace std;
 
