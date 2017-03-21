@@ -139,14 +139,13 @@ comm = 20
 W_t = 1 # work per time to sum 2 numbers
 
 def serial_time(w_t, n):
-   T_1 = (n-1)*w_t
+   T_1 = n*w_t
    return(T_1)
 
-
 def parallel_time(p, C, w_t, n):    
-   T_p = serial_time(w_t,n/p)
+   T_p = serial_time(w_t,n/p) + C
    for i in range(p):
-       T_p += C*p/(2**i) + p/(2**i)*w_t
+       T_p += C + p/(2**i)*w_t
    return(T_p)
 
 def standard_speed(p, C, w_t, n):
@@ -155,25 +154,51 @@ def standard_speed(p, C, w_t, n):
    
    return(T_1/T_p)
 
-def scaled_speed(p, C, w_t, n):
-   T_p = parallel_time(p, C, w_t, n)
+def scaled_speedNoComm(p, w_t, n):
+   T_p = serial_time(w_t, n / p)
+   T_s = 0
    
-   return(n/T_p)
+   total = T_s + T_p * p
+
+   return(p - (p - 1) * (T_s / total))
+
+def scaled_speed(p, C, w_t, n):
+   T_p = serial_time(w_t, n/p) + C
+   T_s = 0
+   for i in range(p):
+       T_s += C + p/(2**i)*w_t
+   
+   total = T_s + T_p * p
+   return(p - (p - 1) * T_s/total)
+   #return((T_s / total) + p * (1 - T_s / total))
 
 
 
-scale = [scaled_speed(i,comm, W_t,n*i) for i in p]
-stand = [standard_speed(i, comm, W_t,n) for i in p]
+scale = [scaled_speed(i,comm, W_t, n) for i in p]
+scaleNoCom = [scaled_speedNoComm(i, W_t, n) for i in p]
+stand = [standard_speed(i, comm, W_t, n) for i in p]
 axes = plt.gca()
+plt.figure(1)
 plt.plot(p, stand, '-b', label='Standard Speed-up')
-plt.plot(p, scale, '-r', label='Scaled Speed-up')
-# plt.yscale('log')
-axes.set_ylim([0,np.ceil(max(scale + stand))+1])
+plt.plot(p, scale, '-r', label='Scaled Speed-up (With Communication)')
+plt.plot(p, scaleNoCom, '-k', label='Scaled Speed-up (No Communication)')
+axes.set_ylim([0,np.ceil(max(scale + stand + scaleNoCom))+1])
 axes.set_xlim([0,max(p)])
 plt.xlabel('Number of Processors')
 plt.ylabel('Speed-up')
 plt.title('Plot of Speed-up Versus Time')
-plt.legend(loc=5)
+plt.legend(loc=2)
+plt.savefig("figures/speedup.png")
+
+plt.figure(3)
+axes = plt.gca()
+plt.plot(p, stand, '-b', label='Standard Speed-up')
+axes.set_ylim([0,np.ceil(max(stand ))])
+axes.set_xlim([0,max(p)])
+# plt.yscale('log')
+plt.xlabel('Number of Processors')
+plt.ylabel('Speed-up')
+plt.title('Plot of Stand Speed-up Versus Time')
 plt.savefig("figures/speedup2.png")
 
 \end{alltt}
@@ -181,8 +206,9 @@ plt.savefig("figures/speedup2.png")
 \end{knitrout}
 \begin{figure}[H]
   \centering
-    \includegraphics[width=0.9\textwidth]{figures/speedup2.png}
-    \caption{Comparison of standard speed-up versus scaled speed-up, where scaled speed-up increases the base problem size of $n=256$ elements by a factor of the processors, $p$.}
+    \includegraphics[width=0.4\textwidth]{figures/speedup.png}
+    \includegraphics[width=0.4\textwidth]{figures/speedup2.png}
+    \caption{Comparison of standard speed-up versus scaled speed-up, where scaled speed-up increases the base problem size of $n=256$ elements by a factor of the processors, $p$. Close up of standard speed up presented to actually see the line}
 
   \end{figure}
 \end{enumerate}

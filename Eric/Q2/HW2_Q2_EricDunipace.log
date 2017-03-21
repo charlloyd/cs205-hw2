@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.17 (TeX Live 2016) (preloaded format=pdflatex 2016.5.22)  10 MAR 2017 10:19
+This is pdfTeX, Version 3.14159265-2.6-1.40.17 (TeX Live 2016) (preloaded format=pdflatex 2016.5.22)  21 MAR 2017 18:42
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -394,104 +394,112 @@ Overfull \hbox (6.79999pt too wide) in paragraph at lines 119--120
 ]
 Package color Info: Redefining color shadecolor on input line 123.
 
-Underfull \vbox (badness 1838) detected at line 180
+Underfull \vbox (badness 1838) detected at line 205
  []
 
-[3] <figures/speedup2.png, id=26, 578.16pt x 433.62pt>
+[3] <figures/speedup.png, id=26, 578.16pt x 433.62pt>
+File: figures/speedup.png Graphic file (type png)
+
+<use figures/speedup.png>
+Package pdftex.def Info: figures/speedup.png used on input line 209.
+(pdftex.def)             Requested size: 187.89914pt x 140.92482pt.
+ <figures/speedup2.png, id=28, 578.16pt x 433.62pt>
 File: figures/speedup2.png Graphic file (type png)
 
 <use figures/speedup2.png>
-Package pdftex.def Info: figures/speedup2.png used on input line 184.
-(pdftex.def)             Requested size: 422.77664pt x 317.08252pt.
-
-Underfull \hbox (badness 10000) in paragraph at lines 192--194
-
- []
-
-[4 <./figures/speedup2.png>]
-Underfull \hbox (badness 10000) in paragraph at lines 195--200
+Package pdftex.def Info: figures/speedup2.png used on input line 210.
+(pdftex.def)             Requested size: 187.89914pt x 140.92482pt.
+ [4]
+Underfull \hbox (badness 10000) in paragraph at lines 218--220
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 201--202
+Underfull \hbox (badness 10000) in paragraph at lines 221--226
 
  []
 
 
-Overfull \hbox (6.79999pt too wide) in paragraph at lines 204--205
+Underfull \hbox (badness 10000) in paragraph at lines 227--228
+
+ []
+
+
+Overfull \hbox (6.79999pt too wide) in paragraph at lines 230--231
 [][] 
  []
 
 
-Overfull \hbox (6.79999pt too wide) in paragraph at lines 207--208
+Overfull \hbox (6.79999pt too wide) in paragraph at lines 233--234
 [][] 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 207--208
+Underfull \hbox (badness 10000) in paragraph at lines 233--234
 
  []
 
 
-Overfull \hbox (6.79999pt too wide) in paragraph at lines 209--210
+Overfull \hbox (6.79999pt too wide) in paragraph at lines 235--236
 [][] 
  []
 
 
-Overfull \hbox (6.79999pt too wide) in paragraph at lines 211--212
+Overfull \hbox (6.79999pt too wide) in paragraph at lines 237--238
 [][] 
  []
 
 
-Overfull \hbox (6.79999pt too wide) in paragraph at lines 214--215
+Overfull \hbox (6.79999pt too wide) in paragraph at lines 240--241
 [][] 
  []
 
 
-Overfull \hbox (6.79999pt too wide) in paragraph at lines 216--217
+Overfull \hbox (6.79999pt too wide) in paragraph at lines 242--243
 [][] 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 216--217
+Underfull \hbox (badness 10000) in paragraph at lines 242--243
 
  []
 
 
-Overfull \hbox (6.79999pt too wide) in paragraph at lines 218--219
+Overfull \hbox (6.79999pt too wide) in paragraph at lines 244--245
 [][] 
  []
 
 
-Overfull \hbox (6.79999pt too wide) in paragraph at lines 220--221
+Overfull \hbox (6.79999pt too wide) in paragraph at lines 246--247
 [][] 
  []
 
 
-Overfull \hbox (6.79999pt too wide) in paragraph at lines 222--223
+Overfull \hbox (6.79999pt too wide) in paragraph at lines 248--249
 [][] 
  []
 
-LaTeX Font Info:    Try loading font information for OMS+cmr on input line 230.
+[5 <./figures/speedup.png> <./figures/speedup2.png>]
+LaTeX Font Info:    Try loading font information for OMS+cmr on input line 256.
+
 
 (/usr/local/texlive/2016/texmf-dist/tex/latex/base/omscmr.fd
 File: omscmr.fd 2014/09/29 v2.5h Standard LaTeX font definitions
 )
 LaTeX Font Info:    Font shape `OMS/cmr/m/n' in size <10> not available
-(Font)              Font shape `OMS/cmsy/m/n' tried instead on input line 230.
+(Font)              Font shape `OMS/cmsy/m/n' tried instead on input line 256.
 
 
 AED: lastpage setting LastPage
-[5] (./HW2_Q2_EricDunipace.aux) ) 
+[6] (./HW2_Q2_EricDunipace.aux) ) 
 Here is how much of TeX's memory you used:
- 4027 strings out of 493014
- 56741 string characters out of 6133351
- 134255 words of memory out of 5000000
- 7473 multiletter control sequences out of 15000+600000
+ 4032 strings out of 493014
+ 56847 string characters out of 6133351
+ 136255 words of memory out of 5000000
+ 7477 multiletter control sequences out of 15000+600000
  11984 words of font info for 47 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
- 38i,9n,32p,648b,448s stack positions out of 5000i,500n,10000p,200000b,80000s
+ 38i,9n,32p,648b,472s stack positions out of 5000i,500n,10000p,200000b,80000s
 </usr/local/texlive/2016/texmf-dist/fonts/type
 1/public/amsfonts/cm/cmbx10.pfb></usr/local/texlive/2016/texmf-dist/fonts/type1
 /public/amsfonts/cm/cmbx12.pfb></usr/local/texlive/2016/texmf-dist/fonts/type1/
@@ -507,10 +515,10 @@ nts/cm/cmr5.pfb></usr/local/texlive/2016/texmf-dist/fonts/type1/public/amsfonts
 /cmsy10.pfb></usr/local/texlive/2016/texmf-dist/fonts/type1/public/amsfonts/cm/
 cmsy7.pfb></usr/local/texlive/2016/texmf-dist/fonts/type1/public/amsfonts/cm/cm
 tt10.pfb>
-Output written on HW2_Q2_EricDunipace.pdf (5 pages, 185556 bytes).
+Output written on HW2_Q2_EricDunipace.pdf (6 pages, 223913 bytes).
 PDF statistics:
- 79 PDF objects out of 1000 (max. 8388607)
- 55 compressed objects within 1 object stream
+ 84 PDF objects out of 1000 (max. 8388607)
+ 57 compressed objects within 1 object stream
  0 named destinations out of 1000 (max. 500000)
- 6 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 11 words of extra memory for PDF output out of 10000 (max. 10000000)
 
