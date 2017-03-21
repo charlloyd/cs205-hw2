@@ -1,4 +1,8 @@
 #include <iostream>
+
+// compile with "g++ helloworld.cpp -o helloworld"
+// execute with "./helloworld"
+
 using namespace std;
 
 int main () {
