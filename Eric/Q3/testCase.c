@@ -7,8 +7,7 @@
 //
 
 #include "testCase.h"
-#include <stdlib.h>
-#include ""
+
 
 void printArray(double *array, int size)
 {
@@ -20,7 +19,7 @@ void printArray(double *array, int size)
 
 int main( int argc, char *argv[] )
 {
-    int SIZES[2] = {2, 4};//, 6, 8, 10};
+    int SIZES[5] = {2, 4, 6, 8, 10};
     
     
     for(int s = 0; s < sizeof(SIZES)/sizeof(int); ++s){
@@ -33,11 +32,9 @@ int main( int argc, char *argv[] )
             testMat[t] = t + 1.0;
         }
         
-        size_t numbytes = size * size * sizeof( double );
-        
-        out = (double *) malloc ( numbytes );
-        blasOut = (double *) malloc ( numbytes );
-        
+        out = (double *) calloc ( size * size, sizeof( double ) );
+        blasOut = (double *) calloc ( size * size, sizeof( double )  );
+
         cpu_mm(size, size, size, testMat, testMat, out );
         
         cblas_dgemm(CblasColMajor,
@@ -54,13 +51,10 @@ int main( int argc, char *argv[] )
                     1.0,
                     blasOut,
                     size);
-        printArray(out, size*size);
+        printf("%d", allEqual(out, blasOut, size*size, 1E-3));
         printf("\n");
-        printArray(testMat, size*size);
-        printf("\n");
-        printf("%d", s);
         free(out);
-//        free(testMat);
+        free(blasOut);
     }
     
     

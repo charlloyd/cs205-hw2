@@ -41,3 +41,19 @@ void cpu_mm(const int N, const int J, const int K, const double *x, const double
     }
 }
 
+int allEqual(const double *a, const double *b, const int N, const double tol)
+{
+    int equal = 1;
+    double diff = 0;
+    
+    for(int n=0; n < N; ++n){
+        diff = fabs(a[n]-b[n]);
+        if(diff > tol){
+            equal = 0;
+            break;
+        }
+    }
+    
+    return equal;
+}
+

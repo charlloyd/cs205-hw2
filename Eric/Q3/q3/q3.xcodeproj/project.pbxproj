@@ -30,6 +30,10 @@
 		026AB9711E73954000D4701A /* functions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = functions.h; path = ../../functions.h; sourceTree = "<group>"; };
 		026AB9721E73954000D4701A /* testCase.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; lineEnding = 0; name = testCase.c; path = ../../testCase.c; sourceTree = "<group>"; usesTabs = 0; };
 		026AB9731E73954000D4701A /* testCase.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = testCase.h; path = ../../testCase.h; sourceTree = "<group>"; };
+		0292CB101E81AE8500274B08 /* cblas.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = cblas.h; path = ../../cblas.h; sourceTree = "<group>"; };
+		0292CB141E81B2B200274B08 /* src */ = {isa = PBXFileReference; lastKnownFileType = folder; name = src; path = ../src; sourceTree = "<group>"; };
+		0292CB151E81B2EF00274B08 /* cblas_dgemm.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = cblas_dgemm.c; sourceTree = "<group>"; };
+		0292CB171E81B31900274B08 /* cblas_f77.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = cblas_f77.h; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -67,6 +71,10 @@
 				026AB9711E73954000D4701A /* functions.h */,
 				026AB9721E73954000D4701A /* testCase.c */,
 				026AB9731E73954000D4701A /* testCase.h */,
+				0292CB151E81B2EF00274B08 /* cblas_dgemm.c */,
+				0292CB171E81B31900274B08 /* cblas_f77.h */,
+				0292CB101E81AE8500274B08 /* cblas.h */,
+				0292CB141E81B2B200274B08 /* src */,
 			);
 			path = q3;
 			sourceTree = "<group>";
@@ -256,6 +264,7 @@
 				026AB96F1E73952800D4701A /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};

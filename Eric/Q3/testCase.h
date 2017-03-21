@@ -11,5 +11,7 @@
 
 #include <stdio.h>
 #include "functions.h"
+#include <stdlib.h>
+#include "Accelerate/Accelerate.h"
 
 #endif /* testCase_h */
