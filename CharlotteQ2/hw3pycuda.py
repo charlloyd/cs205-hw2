@@ -81,7 +81,6 @@ for MATRIX_SIZE in MATRIX_SIZES:
     # initialize matrices
     a_cpu = np.random.randn(MATRIX_SIZE, MATRIX_SIZE).astype(np.float32)
     b_cpu = np.random.randn(MATRIX_SIZE, MATRIX_SIZE).astype(np.float32)
-    #c_cpu = np.dot(a_cpu, b_cpu)
     
     # send matrices to GPU
     start = time.time()
@@ -95,7 +94,7 @@ for MATRIX_SIZE in MATRIX_SIZES:
     }
     mod = compiler.SourceModule(simple_kernel_code)
     matmulsimple = mod.get_function("MatMulSimpleKernel")
-    #matmulsimple(a_gpu, b_gpu, c_gpu, block=(MATRIX_SIZE, MATRIX_SIZE, 1))
+    matmulsimple(a_gpu, b_gpu, c_gpu, block=(MATRIX_SIZE, MATRIX_SIZE, 1))
 
     print("---")
     print("SIMPLE")
@@ -107,8 +106,7 @@ for MATRIX_SIZE in MATRIX_SIZES:
     print(a_gpu.get())
     print("Matrix B (GPU):")
     print(b_gpu.get())
-    #print("CPU-GPU difference:")
-    #print(c_cpu - c_gpu.get())
+
 
     ###########################################
     
@@ -140,11 +138,6 @@ for MATRIX_SIZE in MATRIX_SIZES:
     print(a_gpu.get())
     print("Matrix B (GPU):")
     print(b_gpu.get())
-    #print("CPU-GPU difference:")
-    #print(c_cpu - c_gpu.get())
-    #print("L2 norm:", la.norm(c_cpu - c_gpu.get()))
-    
-    #np.allclose(c_cpu, c_gpu.get())
 
 print("---")
 print(MATRIX_SIZES)
