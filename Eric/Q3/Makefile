@@ -22,8 +22,11 @@ NVOPTS=-O3 -m32 -DDEBUG
 $(BIN): testCase.o
 	$(NVCC) $(NVOPTS) -o $(BIN) testCase.o -lcublas
 
-testCase.o: testCase.cu
-	$(NVCC) $(NVOPTS) -c testCase.cu 
+testCase.o: testCase.cu functions.o
+	$(NVCC) $(NVOPTS) -c testCase.cu functions.o
+
+functions.o: functions.c
+	$(NVCC) $(NVOPTS) -c functions.c
 
 clean:
 	rm -rf testCase.o $(BIN)
