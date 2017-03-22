@@ -1,0 +1,5 @@
+#!/bin/bash
+
+#BATCHARGS
+
+OMP_NUM_THREADS=1 ./laplace2d_omp
