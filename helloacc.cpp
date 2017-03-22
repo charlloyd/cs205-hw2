@@ -9,7 +9,7 @@ using namespace std;
 int main () {
    // for loop execution
 
-int b[8] = {1,2,3,4,5,6,7,8}
+int b[8] = {1,2,3,4,5,6,7,8};
    
 #pragma acc kernels
    for( int a = 0; a < 8; a = a + 1 ) {
