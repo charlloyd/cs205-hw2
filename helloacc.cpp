@@ -18,7 +18,7 @@ int total=0;
    
    clock_t end = clock();
 
-   time_spent = (double)(end-begin) / CLOCKS_PER_SEC;
+   double time_spent = (double)(end-begin) / CLOCKS_PER_SEC;
    
    cout<<"time elapsed: "<<time_spend<<endl;
    
