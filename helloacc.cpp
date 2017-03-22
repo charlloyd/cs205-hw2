@@ -13,7 +13,7 @@ int main () {
 
 int b[8] = {1,2,3,4,5,6,7,8};
 int total=0;
-#pragma acc data copy(b,total), create(a)
+#pragma acc data copy(b,total)
 #pragma acc kernels
    for( int a = 0; a < 8; a = a + 1 ) {
       //cout << "Hello World! number: " << b[a] << endl;
