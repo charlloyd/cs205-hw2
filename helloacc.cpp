@@ -4,6 +4,8 @@
 
 int main () {
 
+clock_t begin = clock();
+   
 int b[8] = {1,2,3,4,5,6,7,8};
 int total=0;
 
@@ -13,5 +15,14 @@ int total=0;
       total += b[a];
    }
    printf("result: %d \n",total);
+   
+   clock_t end = clock();
+
+   time_spent = (double)(end-begin) / CLOCKS_PER_SEC;
+   
+   cout<<"time elapsed: "<<time_spend<<endl;
+   
    return 0;
 }
+
+
