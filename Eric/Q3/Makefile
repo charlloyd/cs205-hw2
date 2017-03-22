@@ -16,13 +16,13 @@
 
 include make.common
 BIN=x.Q3
-NVCC=nvcc
+NVCC=gcc
 NVOPTS=-O3 $(ARCH) -DDEBUG
 
 $(BIN): testCase.o
 	$(NVCC) $(NVOPTS) -o $(BIN) testCase.o -lcublas
 
-kernel.o: kernel.cu
+testcase.o: testcase.cu
 	$(NVCC) $(NVOPTS) -c testCase.cu 
 
 clean:
