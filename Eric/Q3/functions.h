@@ -11,7 +11,7 @@
 
 #include <stdio.h>
 #include <math.h>
-#include <cublas_v2.h>
+#include "cublas_v2.h"
 #include "debug.h"
 
 
