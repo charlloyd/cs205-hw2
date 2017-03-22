@@ -11,7 +11,7 @@
 
 #include <stdio.h>
 #include <math.h>
-#include </usr/local/cuda-7.0/include/cublas_v2.h>
+#include </usr/local/cuda-7.5/include/cublas_v2.h>
 #include "debug.h"
 
 
