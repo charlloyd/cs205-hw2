@@ -59,7 +59,7 @@ int main( int argc, char *argv[] )
 {
 
 /* get GPU device number and name */
-  const int SIZE[3] =  {pow(2,6), pow(2,10), pow(2,16)}
+  const int SIZE[3] =  {pow(2,6), pow(2,10), pow(2,16)};
   int dev;
   cudaDeviceProp deviceProp;
   checkCUDA( cudaGetDevice( &dev ) );
