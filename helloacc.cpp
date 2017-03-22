@@ -20,7 +20,7 @@ int total=0;
 
    double time_spent = (double)(end-begin) / CLOCKS_PER_SEC;
    
-   cout<<"time elapsed: "<<time_spend<<endl;
+   std::cout<<"time elapsed: "<<time_spent<<std::endl;
    
    return 0;
 }
