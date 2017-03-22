@@ -17,7 +17,7 @@
 include make.common
 BIN=x.Q3
 NVCC=gcc
-NVOPTS=-O3 -march -DDEBUG
+NVOPTS=-O3 -m32 -DDEBUG
 
 $(BIN): testCase.o
 	$(NVCC) $(NVOPTS) -o $(BIN) testCase.o -lcublas
