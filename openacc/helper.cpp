@@ -80,11 +80,7 @@ matrix::matrix(int n, int m)
 
 void matrix::set_to_random_int()
 {
-   std::mt19937 engine;
-   engine.seed(std::random_device()());
-   std::uniform_int_distribution<> dis(-1,1);
-
-   for(int i=0;i < nrows*ncols;++i) data[i] = dis(engine);
+   for(int i=0;i < nrows*ncols;++i) data[i] = (rand()%3)-1;
 }
 
 void matrix::generate_graph()
@@ -93,7 +89,7 @@ void matrix::generate_graph()
    engine.seed(std::random_device()());
    std::uniform_int_distribution<> dis(0,1);
 
-   for(int i=0;i < nrows*ncols;++i) data[i] = dis(engine);
+   for(int i=0;i < nrows*ncols;++i) data[i] = rand()%2;
 }
 
 void matrix::print()
