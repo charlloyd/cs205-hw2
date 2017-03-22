@@ -26,7 +26,6 @@ typedef float floatType_t;
 
 /* matrix size and thread dimensions */
 
-#define SIZE[3] =  {pow(2,6), pow(2,10), pow(2,16)}
 #define THREADS_PER_BLOCK_X 16
 #define THREADS_PER_BLOCK_Y 16
 
@@ -60,7 +59,7 @@ int main( int argc, char *argv[] )
 {
 
 /* get GPU device number and name */
-
+  const int SIZE[3] =  {pow(2,6), pow(2,10), pow(2,16)}
   int dev;
   cudaDeviceProp deviceProp;
   checkCUDA( cudaGetDevice( &dev ) );
