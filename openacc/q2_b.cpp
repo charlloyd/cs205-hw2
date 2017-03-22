@@ -2,7 +2,7 @@
 
 void matrix_multiply(int *a, int *b, int *c, int nrows_a, int ncols_a, int ncols_b)
 {
-   #pragma acc enter data copyin(a[0:nrows_a * ncols_a],B[0:ncols_a * ncols_b])
+   #pragma acc enter data copyin(a[0:nrows_a * ncols_a],b[0:ncols_a * ncols_b])
 
    #pragma acc kernels loop independent
    for(int i=0; i<nrows_a; i++)
