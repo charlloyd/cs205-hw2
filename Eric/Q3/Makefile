@@ -22,7 +22,7 @@ NVOPTS=-O3 $(ARCH) -DDEBUG
 $(BIN): testCase.o
 	$(NVCC) $(NVOPTS) -o $(BIN) testCase.o -lcublas
 
-kernel.o: kernel.cu
+test.o: test.cu
 	$(NVCC) $(NVOPTS) -c testCase.cu 
 
 clean:
