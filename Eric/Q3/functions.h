@@ -11,6 +11,9 @@
 
 #include <stdio.h>
 #include <math.h>
+#include </usr/local/cuda-7.0/include/cublas_v2.h>
+#include "debug.h"
+
 
 #define index( row, col, ld ) ( ( (col) * (ld) ) + (row) )
 

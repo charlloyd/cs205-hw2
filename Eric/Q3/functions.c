@@ -7,8 +7,6 @@
 //
 
 #include "functions.h"
-#include "cublas_v2.h"
-#include "debug.h"
 
 typedef float floatType_t;
 
