@@ -26,7 +26,7 @@ typedef float floatType_t;
 
 /* matrix size and thread dimensions */
 
-#define SIZE 1024
+#define SIZE[3] =  {pow(2,6), pow(2,10), pow(2,16)}
 #define THREADS_PER_BLOCK_X 16
 #define THREADS_PER_BLOCK_Y 16
 
@@ -67,7 +67,8 @@ int main( int argc, char *argv[] )
   checkCUDA( cudaGetDeviceProperties( &deviceProp, dev ) );
   printf("Using GPU %d: %s\n", dev, deviceProp.name );
 
-  const int size = SIZE;
+for(size_t s = 0; s < 3; s++){
+  const int size = SIZE[s];
 
   fprintf(stdout, "Matrix size is %d\n",size);
 
@@ -254,6 +255,7 @@ int main( int argc, char *argv[] )
   free( h_c1 );
 
   checkCUDA( cudaDeviceReset() );
+}
 
   return 0;
 }
