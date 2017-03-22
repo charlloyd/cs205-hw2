@@ -9,6 +9,7 @@ using namespace std;
 int main () {
    // for loop execution
 
+#pragma acc kernels
    for( int a = 0; a < 16; a = a + 1 ) {
       cout << "Hello World! number: " << a << endl;
    }
