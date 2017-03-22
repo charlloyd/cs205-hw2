@@ -16,7 +16,7 @@
 
 include make.common
 BIN=x.Q3
-NVCC=gcc
+NVCC=g++
 NVOPTS=-O3 -m32 -DDEBUG
 
 $(BIN): testCase.o
