@@ -15,7 +15,7 @@
 #
 
 include make.common
-BIN=Q3
+BIN=x.matmul_streams
 NVCC=nvcc
 NVOPTS=-O3 $(ARCH) -DDEBUG
 
