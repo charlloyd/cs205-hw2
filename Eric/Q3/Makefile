@@ -15,14 +15,14 @@
 #
 
 include make.common
-BIN=x.matmul_streams
+BIN=x.Q3
 NVCC=nvcc
 NVOPTS=-O3 $(ARCH) -DDEBUG
 
 $(BIN): testCase.o
 	$(NVCC) $(NVOPTS) -o $(BIN) testCase.o -lcublas
 
-test.o: test.cu
+kernel.o: kernel.cu
 	$(NVCC) $(NVOPTS) -c testCase.cu 
 
 clean:
