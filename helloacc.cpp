@@ -1,5 +1,6 @@
 #include <iostream>
 #include <stdlib.h>
+#include <stdio.h>
 
 // compile with "g++ helloacc.cpp -o helloacc"
 // compile with "pgc++ -acc helloacc.cpp -Minfo=accel"
