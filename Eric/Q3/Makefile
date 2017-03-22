@@ -14,7 +14,7 @@
 #  limitations under the License.
 #
 
-include ../make.common
+include make.common
 BIN=x.Q3
 NVCC=nvcc
 NVOPTS=-O3 $(ARCH) -DDEBUG
