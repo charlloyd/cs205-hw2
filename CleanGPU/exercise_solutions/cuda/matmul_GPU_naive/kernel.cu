@@ -55,8 +55,8 @@ int main( int argc, char *argv[] )
 
 /* get GPU device number and name */
 const int SIZE[3] =  {pow(2,6), pow(2,10), pow(2,16)};
-const int THREADS_PER_BLOCK_X[3] = {16, 64, 1024};
-const int THREADS_PER_BLOCK_Y[3] = {16, 64, 1024};
+const int THREADS_PER_BLOCK_X[3] = {16, 32, 32};
+const int THREADS_PER_BLOCK_Y[3] = {16, 32, 32};
 
 for(size_t s = 0; s < 3; s++){
   int dev;
