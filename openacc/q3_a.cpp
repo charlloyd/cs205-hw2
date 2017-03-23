@@ -38,13 +38,13 @@ void bfs(int *Adj, int *x, int n, int root)
 int main(void)
 {
 
-  int N=3;
+  int N=6;
   matrix D = matrix(N);
   matrix X = matrix(N,1);
   D.generate_graph();
 
-  D.print();
+  //D.print();
 
-  bfs(D.data, X.data, N, 1);
+  //bfs(D.data, X.data, N, 1);
 
 }
