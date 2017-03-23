@@ -3,7 +3,7 @@
 module load cuda/8.0-fasrc01
 
 # Pull data from git
-git pull origin master
+git pull origin eifer4_q3_1
 
 # Make appropriate files
 cd
