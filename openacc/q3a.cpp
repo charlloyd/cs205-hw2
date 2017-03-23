@@ -27,8 +27,10 @@ void bfs(int *Adj, int *x, int n, int root)
         }
      }
 
+     std::cout<<std::endl;
      for(int ii=0;ii<n;++ii) std::cout<<x[ii]<<" "; std::cout<<std::endl;
      for(int ii=0;ii<n;++ii) std::cout<<last_x[ii]<<" "; std::cout<<std::endl;
+
 
      if (same(x,last_x,n)) break;
 
@@ -43,8 +45,9 @@ int main(void)
   matrix X = matrix(N,1);
   D.generate_graph();
 
-  //D.print();
+  
+  D.print();
 
-  //bfs(D.data, X.data, N, 1);
+  bfs(D.data, X.data, N, 1);
 
 }

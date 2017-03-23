@@ -1,13 +1,43 @@
-export PGI=/n/seasfs03/IACS/cs205/pgi
-export PATH=$PGI/linux86-64/16.10/bin:$PATH
-export MANPATH=$MANPATH:$PGI/linux86-64/16.10/man
-export LM_LICENSE_FILE=$LM_LICENSE_FILE:$PGI/license.dat
+q2b_seq: q2b.cpp helper.cpp
+	git pull
+	g++ q2b.cpp -o q2b_seq
 
-git pull
+q3a_seq: q3a.cpp helper.cpp
+	git pull
+	g++ q3a.cpp -o q3a_seq
 
-make all
+q3b_seq: q3b.cpp helper.cpp
+	git pull
+	g++ q3b.cpp -o q3b_seq
 
-g++ helloacc.cpp -o helloacc_seq
-pgc++ -acc helloacc.cpp -Minfo=accel -o helloacc_para
-./helloacc_seq
-./helloacc_para
+q2b_para: q2b.cpp helper.cpp
+	git pull
+	pgc++ -acc q2b.cpp -Minfo=accel -o q2b_para
+
+q3a_para: q3a.cpp helper.cpp
+	git pull
+	pgc++ -acc q3a.cpp -Minfo=accel -o q3a_para
+
+q3b_para: q3b.cpp helper.cpp
+	git pull
+	pgc++ -acc q3a.cpp -Minfo=accel -o q3b_para
+
+all_seq: q3b_seq q3a_seq q2b_seq
+	git pull
+	make q2b_seq
+	make q3a_seq
+	make q3b_seq
+
+all_parallel: q3b_seq q3a_seq q2b_seq
+	git pull
+	make q2b_para
+	make q3a_para
+	make q3b_para
+
+clean:
+	rm -f q2b_seq
+	rm -f q2b_para
+	rm -f q3a_seq
+	rm -f q3a_para
+	rm -f q3b_seq
+	rm -f q3b_para
