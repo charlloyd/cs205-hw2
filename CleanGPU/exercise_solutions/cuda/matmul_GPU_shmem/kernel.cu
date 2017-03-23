@@ -99,8 +99,8 @@ int main( int argc, char *argv[] )
 {
 
 /* get GPU device number and name */
-const int SIZE[2] =  {pow(2,6), pow(2,10)};//, pow(2,16)};
-for(size_t s = 0; s < 2; s++){
+const int SIZE[1] =  {pow(2,10)};//, pow(2,16)};
+for(size_t s = 0; s < 1; s++){
   const int size = SIZE[s];
   int dev;
   cudaDeviceProp deviceProp;
