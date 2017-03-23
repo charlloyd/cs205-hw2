@@ -10,6 +10,7 @@ make -C cs205-hw2/CleanGPU/exercise_solutions/cuda/matmul_GPU_naive
 make -C cs205-hw2/CleanGPU/exercise_solutions/cuda/matmul_GPU_shmem
 
 # Run target files
+cd 
 cd cs205-hw2/CleanGPU/exercise_solutions/cuda/matmul_GPU_naive
 ./x.matmul_GPU_naive
 
