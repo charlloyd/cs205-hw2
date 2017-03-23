@@ -28,4 +28,6 @@ cd matmul_GPU_shmem
 ./x.matmul_GPU_shmem
 
 # push data back to git
-git add .; git commit -m "question 3 data added"; git push origin $ORIGIN
+git add .
+git commit -m "question 3 data added"
+git push origin $ORIGIN
