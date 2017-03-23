@@ -27,9 +27,3 @@ cd ..
 cd matmul_GPU_shmem
 ./x.matmul_GPU_shmem
 
-# push data back to git
-git add -A
-git commit -a -m "question 3 data added"
-git config --global user.name "Eric Dunipace"
-git config --global user.email edunipace@g.harvard.edu
-git push origin $ORIGIN
