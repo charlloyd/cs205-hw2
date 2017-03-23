@@ -30,7 +30,7 @@ typedef float floatType_t;
 
 #define THREADS_PER_BLOCK_X 16 // Thread block size, x dimension
 #define THREADS_PER_BLOCK_Y 16 // Thread block size, y dimension
-#define BLOCK_K 16 // square block of K size
+#define BLOCK_K 512 // square block of K size
 
 __global__ void GPU_shmem2(const int m, floatType_t const * const a, 
       floatType_t const * const b, floatType_t *c )
@@ -99,8 +99,8 @@ int main( int argc, char *argv[] )
 {
 
 /* get GPU device number and name */
-  int SIZE[3] = {pow(2,6), pow(2,10), pow(2,16)};
-  for(size_t s = 0; s < 3; s++){
+const int SIZE[3] =  {pow(2,6), pow(2,10)};//, pow(2,16)};
+for(size_t s = 0; s < 3; s++){
   const int size = SIZE[s];
   int dev;
   cudaDeviceProp deviceProp;

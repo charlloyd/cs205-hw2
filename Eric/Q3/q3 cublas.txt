@@ -47,4 +47,3 @@ Performance is 164.900419 GFlop/s
 Maximum error is 0.000000e+00 percent
 PASS
 Using GPU 0: Tesla K40m
-Matrix size is 65536
