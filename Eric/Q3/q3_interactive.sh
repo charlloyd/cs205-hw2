@@ -6,7 +6,6 @@ module load cuda/8.0-fasrc01
 git pull origin eifer4_q3_1
 
 # Make appropriate files
-cd
 make -C cs205-hw2/CleanGPU/exercise_solutions/cuda/matmul_GPU_naive
 make -C cs205-hw2/CleanGPU/exercise_solutions/cuda/matmul_GPU_shmem
 
