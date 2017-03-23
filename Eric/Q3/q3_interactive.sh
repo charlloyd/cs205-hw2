@@ -1,6 +1,7 @@
 #!/bin/bash
 # Load required modules
 MODULE="cuda"
+ORIGIN="eifer4_q3_1"
 
 if lsmod | grep "$MODULE" &> /dev/null ; then
     echo "$MODULE is already loaded"
@@ -11,7 +12,7 @@ else
 fi
 
 # Pull data from git
-git pull origin eifer4_q3_1
+git pull origin $ORIGIN
 
 # Make appropriate files
 cd
@@ -25,3 +26,6 @@ cd cs205-hw2/CleanGPU/exercise_solutions/cuda/matmul_GPU_naive
 cd ..
 cd matmul_GPU_shmem
 ./x.matmul_GPU_shmem
+
+# push data back to git
+git add .; git commit -m "question 3 data added"; git push origin $ORIGIN
