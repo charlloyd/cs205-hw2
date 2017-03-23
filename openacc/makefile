@@ -1,35 +1,37 @@
+ORIGIN=q3_test
+
 q2b_seq: q2b.cpp helper.cpp
-	git pull
+	git pull origin $(ORIGIN)
 	g++ q2b.cpp -o q2b_seq
 
 q3a_seq: q3a.cpp helper.cpp
-	git pull
+	git pull origin $(ORIGIN)
 	g++ q3a.cpp -o q3a_seq
 
 q3b_seq: q3b.cpp helper.cpp
-	git pull
+	git pull origin $(ORIGIN)
 	g++ q3b.cpp -o q3b_seq
 
 q2b_para: q2b.cpp helper.cpp
-	git pull
+	git pull origin $(ORIGIN)
 	pgc++ -acc q2b.cpp -Minfo=accel -o q2b_para
 
 q3a_para: q3a.cpp helper.cpp
-	git pull
+	git pull origin $(ORIGIN)
 	pgc++ -acc q3a.cpp -Minfo=accel -o q3a_para
 
 q3b_para: q3b.cpp helper.cpp
-	git pull
+	git pull origin $(ORIGIN)
 	pgc++ -acc q3a.cpp -Minfo=accel -o q3b_para
 
 all_seq: q3b_seq q3a_seq q2b_seq
-	git pull
+	git pull origin $(ORIGIN)
 	make q2b_seq
 	make q3a_seq
 	make q3b_seq
 
 all_parallel: q3b_seq q3a_seq q2b_seq
-	git pull
+	git pull origin $(ORIGIN)
 	make q2b_para
 	make q3a_para
 	make q3b_para

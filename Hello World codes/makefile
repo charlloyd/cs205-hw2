@@ -3,7 +3,11 @@ export PATH=$PGI/linux86-64/16.10/bin:$PATH
 export MANPATH=$MANPATH:$PGI/linux86-64/16.10/man
 export LM_LICENSE_FILE=$LM_LICENSE_FILE:$PGI/license.dat
 
-git pull origin q3_test
+git pull
 
-make all_seq
-make all_parallel
+make all
+
+g++ helloacc.cpp -o helloacc_seq
+pgc++ -acc helloacc.cpp -Minfo=accel -o helloacc_para
+./helloacc_seq
+./helloacc_para
