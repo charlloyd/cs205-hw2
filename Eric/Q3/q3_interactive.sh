@@ -1,6 +1,13 @@
 #!/bin/bash
 # Load required modules
-module load cuda/8.0-fasrc01
+MODULE="cuda"
+
+if lsmod | grep "$MODULE" &> /dev/null ; then
+
+else
+    module load cuda/8.0-fasrc01
+
+fi
 
 # Pull data from git
 git pull origin eifer4_q3_1
