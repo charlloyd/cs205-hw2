@@ -1,0 +1,47 @@
+#question 3 cublas
+# NAIVE
+Using GPU 0: Tesla K40m
+Matrix size is 64
+Total memory required is 0.049152 MB
+Total time GPU CUBLAS is 0.000067 sec
+Performance is 7.794482 GFlop/s
+Total time GPU NAIVE is 0.000169 sec
+Performance is 3.095409 GFlop/s
+Maximum error is 0.000000e+00 percent
+PASS
+Using GPU 0: Tesla K40m
+Matrix size is 1024
+Total memory required is 12.582912 MB
+Total time GPU CUBLAS is 0.001127 sec
+Performance is 1905.581600 GFlop/s
+Total time GPU NAIVE is 0.032053 sec
+Performance is 66.997178 GFlop/s
+Maximum error is 0.000000e+00 percent
+PASS
+Using GPU 0: Tesla K40m
+Matrix size is 0
+Total memory required is 0.000000 MB
+ ** On entry to SGEMM  parameter number 8 had an illegal value
+ ** On entry to SGEMM  parameter number 8 had an illegal value
+
+#Shared Memory
+Using GPU 0: Tesla K40m
+Matrix size is 64
+Total memory required is 0.049152 MB
+Total time GPU CUBLAS is 0.000077 sec
+Performance is 6.803987 GFlop/s
+Total time GPU SHMEM is 0.000158 sec
+Performance is 3.308562 GFlop/s
+Maximum error is 0.000000e+00 percent
+PASS
+Using GPU 0: Tesla K40m
+Matrix size is 1024
+Total memory required is 12.582912 MB
+Total time GPU CUBLAS is 0.001124 sec
+Performance is 1910.028809 GFlop/s
+Total time GPU SHMEM is 0.013023 sec
+Performance is 164.900419 GFlop/s
+Maximum error is 0.000000e+00 percent
+PASS
+Using GPU 0: Tesla K40m
+Matrix size is 65536
