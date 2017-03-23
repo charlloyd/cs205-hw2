@@ -6,4 +6,4 @@ export LM_LICENSE_FILE=$LM_LICENSE_FILE:$PGI/license.dat
 git pull origin q3_test
 
 make all_seq
-make all_para
+make all_parallel
