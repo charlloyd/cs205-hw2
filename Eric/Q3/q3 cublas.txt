@@ -1,4 +1,7 @@
 #question 3 cublas
+#run command
+# srun --pty --x11=first -p holyseasgpu --mem 52000 -t 0-5:00 -n 1 --gres=gpu:1  /bin/bash
+# said it needs 51539.607552 MB for the large matrix!!!
 # NAIVE
 Using GPU 0: Tesla K40m
 Matrix size is 64
