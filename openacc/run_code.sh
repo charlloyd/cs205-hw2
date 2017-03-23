@@ -5,7 +5,7 @@ export LM_LICENSE_FILE=$LM_LICENSE_FILE:$PGI/license.dat
 
 ORIGIN = "q3_test"
 
-git pull $ORIGIN
+git pull origin $ORIGIN
 
 make all_seq
 make all_para
