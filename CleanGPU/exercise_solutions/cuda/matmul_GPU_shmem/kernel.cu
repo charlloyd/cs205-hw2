@@ -28,9 +28,9 @@ typedef float floatType_t;
 
 /* define blocksize X and blocksize Y and blocksize K */
 
-#define THREADS_PER_BLOCK_X 16 // Thread block size, x dimension
-#define THREADS_PER_BLOCK_Y 16 // Thread block size, y dimension
-#define BLOCK_K 32 // square block of K size
+#define THREADS_PER_BLOCK_X 32 // Thread block size, x dimension
+#define THREADS_PER_BLOCK_Y 32 // Thread block size, y dimension
+#define BLOCK_K 256 // square block of K size
 
 __global__ void GPU_shmem2(const int m, floatType_t const * const a, 
       floatType_t const * const b, floatType_t *c )
