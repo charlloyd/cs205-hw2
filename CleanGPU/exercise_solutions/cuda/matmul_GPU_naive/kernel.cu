@@ -24,6 +24,11 @@ typedef float floatType_t;
 
 #define INDX( row, col, ld ) ( ( (col) * (ld) ) + (row) )
 
+/* matrix size and thread dimensions */
+
+#define THREADS_PER_BLOCK_X 16
+#define THREADS_PER_BLOCK_Y 16
+
 /* naive GPU kernel where each element of C is computed by a single thread */
 
 __global__ void GPU_naive( const int m, floatType_t const * const a, 
@@ -54,10 +59,7 @@ int main( int argc, char *argv[] )
 {
 
 /* get GPU device number and name */
-const int SIZE[3] =  {pow(2,6), pow(2,10), pow(2,16)};
-const int THREADS_PER_BLOCK_X[3] = {16, 32, 32};
-const int THREADS_PER_BLOCK_Y[3] = {16, 32, 32};
-
+const int SIZE[3] =  {pow(2,6), pow(2,10)};//, pow(2,16)};
 for(size_t s = 0; s < 3; s++){
   int dev;
   cudaDeviceProp deviceProp;
@@ -67,8 +69,6 @@ for(size_t s = 0; s < 3; s++){
 
 
   const int size = SIZE[s];
-  const int thread_X = THREADS_PER_BLOCK_X[s];
-  const int thread_Y = THREADS_PER_BLOCK_Y[s];
 
   fprintf(stdout, "Matrix size is %d\n",size);
 
@@ -196,9 +196,9 @@ for(size_t s = 0; s < 3; s++){
 
 /* setup grid and block sizes */
 
-  dim3 threads( thread_X, thread_Y, 1 );
-  dim3 blocks( size / thread_X + 1,
-               size / thread_Y + 1, 1 );
+  dim3 threads( THREADS_PER_BLOCK_X, THREADS_PER_BLOCK_Y, 1 );
+  dim3 blocks( size / THREADS_PER_BLOCK_X + 1, 
+               size / THREADS_PER_BLOCK_Y + 1, 1 );
 
 /* start timers */
 
