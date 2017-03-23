@@ -67,8 +67,8 @@ for(size_t s = 0; s < 3; s++){
 
 
   const int size = SIZE[s];
-  const int thread_x = THREADS_PER_BLOCK_X[s];
-  const int thread_y = THREADS_PER_BLOCK_Y[s];
+  const int thread_X = THREADS_PER_BLOCK_X[s];
+  const int thread_Y = THREADS_PER_BLOCK_Y[s];
 
   fprintf(stdout, "Matrix size is %d\n",size);
 
