@@ -1,0 +1,5 @@
+#!/bin/bash
+
+#BATCHARGS
+
+PGI_ACC_TIME=1 ./laplace2d_acc
