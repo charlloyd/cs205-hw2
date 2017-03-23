@@ -3,7 +3,7 @@
 MODULE="cuda"
 
 if lsmod | grep "$MODULE" &> /dev/null ; then
-    echo "$MODULE is loaded!"
+    echo "$MODULE is already loaded"
 else
     echo "Loading $MODULE"
     module load cuda/8.0-fasrc01
