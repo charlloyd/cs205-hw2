@@ -39,10 +39,9 @@ bool matrix::same(matrix &B)
 matrix::matrix(int *D, int n, int m)
 {
   ncols = n;
-  nrows = n;
+  nrows = m;
   data = (int *) malloc( sizeof(int)*n*m);
-
-
+  copy_from_source_to_destination(D,data,n*m);
 }
 
 matrix::matrix(int n)
@@ -102,6 +101,7 @@ void matrix::print()
       }
       std::cout<<std::endl;
    }
+   std::cout<<std::endl;
 }
 
 bool mult_comp(matrix &a, matrix &b, matrix &c)
@@ -112,9 +112,12 @@ bool mult_comp(matrix &a, matrix &b, matrix &c)
 
 bool same(int *x, int *y, int n)
 {
+   
+
    for(int k=0;k<n;++k)
    {
      if (y[k] != x[k]) return false;
+     
    }
    return true;
 }
