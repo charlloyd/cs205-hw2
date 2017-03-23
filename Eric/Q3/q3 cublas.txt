@@ -1,6 +1,6 @@
 #question 3 cublas
 #run command
-# srun --pty --x11=first -p holyseasgpu --mem 52000 -t 0-5:00 -n 1 --gres=gpu:1  /bin/bash
+# srun --pty --x11=first -p holyseasgpu --mem 4000 -t 0-5:00 -n 1 --gres=gpu:1  /bin/bash
 # said it needs 51539.607552 MB for the large matrix!!!
 # NAIVE
 Using GPU 0: Tesla K40m
@@ -22,28 +22,25 @@ Performance is 66.997178 GFlop/s
 Maximum error is 0.000000e+00 percent
 PASS
 Using GPU 0: Tesla K40m
-Matrix size is 0
-Total memory required is 0.000000 MB
- ** On entry to SGEMM  parameter number 8 had an illegal value
- ** On entry to SGEMM  parameter number 8 had an illegal value
 
-#Shared Memory
+
+#Shared Memory 
+#used blocks of 32x32 (couldn’t get larger to work)
 Using GPU 0: Tesla K40m
 Matrix size is 64
 Total memory required is 0.049152 MB
 Total time GPU CUBLAS is 0.000077 sec
-Performance is 6.803987 GFlop/s
-Total time GPU SHMEM is 0.000158 sec
-Performance is 3.308562 GFlop/s
+Performance is 6.829512 GFlop/s
+Total time GPU SHMEM is 0.000118 sec
+Performance is 4.438906 GFlop/s
 Maximum error is 0.000000e+00 percent
 PASS
 Using GPU 0: Tesla K40m
 Matrix size is 1024
 Total memory required is 12.582912 MB
-Total time GPU CUBLAS is 0.001124 sec
-Performance is 1910.028809 GFlop/s
-Total time GPU SHMEM is 0.013023 sec
-Performance is 164.900419 GFlop/s
+Total time GPU CUBLAS is 0.001149 sec
+Performance is 1869.275678 GFlop/s
+Total time GPU SHMEM is 0.007424 sec
+Performance is 289.279800 GFlop/s
 Maximum error is 0.000000e+00 percent
 PASS
-Using GPU 0: Tesla K40m
