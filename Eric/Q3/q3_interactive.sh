@@ -6,13 +6,14 @@ module load cuda/8.0-fasrc01
 git pull origin master
 
 # Make appropriate files
+cd
 make -C cs205-hw2/CleanGPU/exercise_solutions/cuda/matmul_GPU_naive
 make -C cs205-hw2/CleanGPU/exercise_solutions/cuda/matmul_GPU_shmem
 
 # Run target files
-cd 
 cd cs205-hw2/CleanGPU/exercise_solutions/cuda/matmul_GPU_naive
 ./x.matmul_GPU_naive
 
-cd cs205-hw2/CleanGPU/exercise_solutions/cuda/matmul_GPU_shmem
+cd ..
+cd matmul_GPU_shmem
 ./x.matmul_GPU_shmem
