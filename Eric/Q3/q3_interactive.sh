@@ -1,7 +1,7 @@
 #!/bin/bash
 # Load required modules
 MODULE="cuda"
-ORIGIN="eifer4_q3_1"
+ORIGIN="master"
 
 if lsmod | grep "$MODULE" &> /dev/null ; then
     echo "$MODULE is already loaded"
