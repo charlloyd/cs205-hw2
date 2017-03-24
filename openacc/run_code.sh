@@ -5,4 +5,3 @@ export LM_LICENSE_FILE=$LM_LICENSE_FILE:$PGI/license.dat
 
 git pull
 
-make all
