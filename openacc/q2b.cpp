@@ -45,7 +45,7 @@ int main(void)
      int *B = generate_graph(N,N);
      int *C = generate_graph(N,N);
       
-     acc_init(acc_device_nvidia)
+      acc_init(acc_device_nvidia);
       
      clock_t begin = clock();
      matrix_multiply(A,B,C,N,N,N);
