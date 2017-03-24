@@ -4,8 +4,8 @@
 void apsp(int *A0, int n)
 {
 
-   int *Anp1 = (int *)malloc(sizeof(int) * n * n);
-   int *An = (int *)malloc(sizeof(int) * n * n);
+   int *Anp1 = (int *) malloc(sizeof(int) * n * n);
+   int *An   = (int *) malloc(sizeof(int) * n * n);
 
    copy_from_source_to_destination(A0, Anp1, n*n);
    copy_from_source_to_destination(A0, An  , n*n);
@@ -34,12 +34,12 @@ void apsp(int *A0, int n)
 
 int main(void)
 {
-  int data[4] = {2,3,4,1};
+  int data[16] = {0,INT_MAX/2,-2,INT_MAX/2,4,0,3,INT_MAX/2,INT_MAX/2,INT_MAX/2,0,2,INT_MAX/2,-1,INT_MAX/2,0};
 
-  matrix A = matrix(data,2,2);
+  matrix A = matrix(data,4,4);
 
   A.print();
 
-  apsp(A.data, 2);
+  apsp(A.data, 4);
 
 }

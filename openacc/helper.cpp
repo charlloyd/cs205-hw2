@@ -84,10 +84,6 @@ void matrix::set_to_random_int()
 
 void matrix::generate_graph()
 {
-   std::mt19937 engine;
-   engine.seed(std::random_device()());
-   std::uniform_int_distribution<> dis(0,1);
-
    for(int i=0;i < nrows*ncols;++i) data[i] = rand()%2;
 }
 
