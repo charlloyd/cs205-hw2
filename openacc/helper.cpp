@@ -24,7 +24,7 @@ int min(int i, int j)
 }
 
 
-void print(int *data,nrows,ncols)
+void print(int *data,int nrows,int ncols)
 {
    for(int i=0;i<nrows;++i)
    {
