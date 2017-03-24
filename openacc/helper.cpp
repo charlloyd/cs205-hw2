@@ -1,6 +1,6 @@
 #include <iostream>
 #include <stdlib.h>
-
+#include <stdarg.h>
 
 void  copy_from_source_to_destination(int *x, int *y, int n)
 {

@@ -1,4 +1,5 @@
 #include "helper.cpp"
+#include <stdarg.h>
 
 void matrix_multiply(int *a, int *b, int *c, int nrows_a, int ncols_a, int ncols_b)
 {
