@@ -43,7 +43,7 @@ void bfs(int *Adj, int n, int root, int *x)
 int main(void)
 {
   int data[16]={0,0,0,0, 1,0,0,0, 0,1,0,0, 0,0,1,0};
-  int *x      = (int *) malloc(sizeof(int) * n);
+  int *x      = (int *) malloc(sizeof(int) * 4);
 
   bfs(data, 4, 0, x);
 }
