@@ -33,6 +33,8 @@ void bfs(int *Adj, int *x, int n, int root)
      if (same(x,last_x,n)) break;
 
    }
+    #pragma acc exit data copyout(x[0:n])
+    #pragma acc exit data delete(Adj[0:n * n], x[0:n])
 }
 
 int main(void)
