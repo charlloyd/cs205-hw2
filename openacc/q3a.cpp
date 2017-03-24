@@ -27,7 +27,7 @@ void bfs(int *Adj, int n, int root, int *x)
         }
      }
 
-     print(x,1,n);
+     //print(x,1,n);
      //print(last_x,1,n);
 
 
@@ -46,5 +46,6 @@ int main(void)
   int *x      = (int *) malloc(sizeof(int) * 4);
 
   bfs(data, 4, 0, x);
+    print(x,1,4);
 }
 
