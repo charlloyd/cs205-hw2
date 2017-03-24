@@ -8,5 +8,5 @@ export LM_LICENSE_FILE=$LM_LICENSE_FILE:$PGI/license.dat
 git pull
 #g++ q2b.cpp -o q2b_seq
 pgc++ -acc q2b.cpp -Minfo=accel -o q2b_para
-./q2b_seq
+#./q2b_seq
 ./q2b_para
