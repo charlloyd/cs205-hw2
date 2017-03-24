@@ -36,7 +36,7 @@ int main(void)
 
     int problem_sizes[2] = {2<<6, 2<<10};//, 1<<8}; //sqrt of N
     printf("%d", 0);
-  for(int k=0; k<0; k++) {
+  for(int k=0; k<2; k++) {
       printf("%d", 1);
      int N = problem_sizes[k];
       printf("%d", 2);
@@ -54,7 +54,7 @@ int main(void)
      std::cout<<"problem size: "<<N*N<<" time:"<< time_spent << std::endl;
     printf("%d", 5);
   }
-printf("%d", 6);
+printf("%d", k);
 
 }
 
