@@ -51,3 +51,4 @@ int main(void)
   bfs(D.data, X.data, N, 1);
 
 }
+
