@@ -13,13 +13,17 @@ void matrix_multiply(int *a, int *b, int *c, int nrows_a, int ncols_a, int ncols
      #pragma acc loop independent
      for(int j=0; j < ncols_b; j++)
       {
-        c[i*ncols_b+j] = 0;
+          float sum = 0;
+          
         
-        #pragma acc loop independent reduction(+:c)
+        #pragma acc loop independent reduction(+:sum)
         for(int k=0;k < ncols_a; k++)
         {
-           c[i*ncols_b+j] += a[i*ncols_a+k] * b[k*ncols_b+j];
+            float A = a[i*ncols_a+k];
+            float B = b[k*ncols_b+j];
+            sum += A * B;
         }
+          c[i*ncols_b+j] = sum;
       }
    }
     }
