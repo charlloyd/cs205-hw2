@@ -1,17 +1,20 @@
 #include "helper.cpp"
 #include <algorithm>
+#include <limits.h>
 
 void apsp(int *A0, int n)
 {
 
-   int *Anp1 = (int *)malloc(sizeof(int) * n * n);
-   int *An = (int *)malloc(sizeof(int) * n * n);
+   int *Anp1 = (int *) malloc(sizeof(int) * n * n);
+   int *An   = (int *) malloc(sizeof(int) * n * n);
+    #pragma acc enter data copyin(A0[0:n * n], An[0:n*n],n)
 
    copy_from_source_to_destination(A0, Anp1, n*n);
    copy_from_source_to_destination(A0, An  , n*n);
 
    while(true)
    {
+     #pragma acc kernels loop independent, copy(Anp1[0:n])
       for(int i=0; i<n; i++)
       {
          for(int j=0; j < n; j++)
@@ -22,24 +25,18 @@ void apsp(int *A0, int n)
          }
       }
 
-      matrix P = matrix(Anp1,n,n);
-      P.print();
-      getc(stdin);
+      print(Anp1,n,n);
 
       if (same(Anp1,An,n*n)) break;
       copy_from_source_to_destination(Anp1, An  , n*n);
-
+    
    }
+    #pragma acc exit data delete(A0[0:n * n], An[0:n], n)
 }
 
 int main(void)
 {
-  int data[4] = {2,3,4,1};
-
-  matrix A = matrix(data,2,2);
-
-  A.print();
-
-  apsp(A.data, 2);
+  int data[16] = {0,INT_MAX/2,-2,INT_MAX/2,4,0,3,INT_MAX/2,INT_MAX/2,INT_MAX/2,0,2,INT_MAX/2,-1,INT_MAX/2,0};
+  apsp(data, 4);
 
 }
