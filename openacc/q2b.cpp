@@ -48,7 +48,7 @@ int main(void)
      clock_t begin = clock();
      matrix_multiply(A,B,C,N,N,N);
      clock_t end = clock();
-     int time_spent = (int)(end - begin) / CLOCKS_PER_SEC/1000;
+     float time_spent = (int)(end - begin) / (CLOCKS_PER_SEC/1000.0);
       
     printf("%d", 4);
      std::cout<<"problem size: "<<N*N<<" time:"<< time_spent << std::endl;
