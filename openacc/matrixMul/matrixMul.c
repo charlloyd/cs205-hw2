@@ -14,6 +14,7 @@
 
 #ifndef _MATRIXMUL_KERNEL_H_
 #define _MATRIXMUL_KERNEL_H__
+#include "cuda2acc.h"
 #include "matrixMul.h"
 #include "timer.h"
 
