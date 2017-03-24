@@ -34,7 +34,7 @@ void matrix_multiply(int *a, int *b, int *c, int nrows_a, int ncols_a, int ncols
 int main(void)
 {
 
-    int problem_sizes[2] = {1<<3, 1<<5};//, 1<<8}; //sqrt of N
+    int problem_sizes[2] = {1<<6, 1<<8};//, 1<<8}; //sqrt of N
     double time_spent;
     clock_t begin;
     clock_t end;
