@@ -20,7 +20,7 @@ void bfs(int *Adj, int *x, int n, int root)
     for(int j=0; j < n; j++)
      {
         x[j] = 0;
-        #pragma acc kernels loop independent
+
         for(int k=0;k < n; k++)
         {
            x[j] = x[j] || (Adj[j*n+k] && last_x[j]);

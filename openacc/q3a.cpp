@@ -1,8 +1,8 @@
 #include "helper.cpp"
 
-void bfs(int *Adj, int n, int root)
+void bfs(int *Adj, int n, int root, int *x)
 {
-   int *x      = (int *) malloc(sizeof(int) * n);
+   
    int *last_x = (int *) malloc(sizeof(int) * n);
 
    #pragma acc enter data copyin(Adj[0:n * n], x[0:n],last_x[0:n])
@@ -36,12 +36,15 @@ void bfs(int *Adj, int n, int root)
    }
   #pragma acc exit data copyout(x[0:n])
   #pragma acc exit data delete(Adj[0:n * n], last_x[0:n])
+    
+ 
 }
 
 int main(void)
 {
   int data[16]={0,0,0,0, 1,0,0,0, 0,1,0,0, 0,0,1,0};
+  int *x      = (int *) malloc(sizeof(int) * n);
 
-  bfs(data, 4, 0);
+  bfs(data, 4, 0, x);
 }
 
