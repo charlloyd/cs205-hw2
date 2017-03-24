@@ -54,7 +54,7 @@ int main(void)
      std::cout<<"problem size: "<<N*N<<" time:"<< time_spent << std::endl;
     printf("%d", 5);
   }
-printf("%d", k);
+
 
 }
 
