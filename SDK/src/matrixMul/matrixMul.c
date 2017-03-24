@@ -109,16 +109,20 @@ void printDiff(float *data1, float *data2, int width, int height, int iListLengt
 void runTest(int argc , char ** argv)
 {
     srand(2006);
+    SIZES[2] = {1<<3, 1<<5};
+for(int s = 0; s<2; s++){
+    int size;
     unsigned int uiWA, uiHA, uiWB, uiHB, uiWC, uiHC;
     int iSizeMultiple = 1;
-
+    
+    size = SIZES[s]
     //iSizeMultiple = CLAMP(iSizeMultiple, 1, 10);
-    uiWA = WA * iSizeMultiple;
-    uiHA = HA * iSizeMultiple;
-    uiWB = WB * iSizeMultiple;
-    uiHB = HB * iSizeMultiple;
-    uiWC = WC * iSizeMultiple;
-    uiHC = HC * iSizeMultiple;
+    uiWA = size * iSizeMultiple;
+    uiHA = size * iSizeMultiple;
+    uiWB = size * iSizeMultiple;
+    uiHB = size * iSizeMultiple;
+    uiWC = size * iSizeMultiple;
+    uiHC = size * iSizeMultiple;
     printf("\nUsing Matrix Sizes: A(%u x %u), B(%u x %u), C(%u x %u)\n\n", uiHA, uiWA, uiHB, uiWB, uiHC, uiWC);
 
     // allocate host memory for matrices A and B
@@ -167,6 +171,7 @@ void runTest(int argc , char ** argv)
     free(h_B);
     free(h_C);
     free(reference);
+  }
 }
 
 int main(int argc, char **argv )

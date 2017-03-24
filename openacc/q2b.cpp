@@ -3,27 +3,33 @@
 
 void matrix_multiply(int *a, int *b, int *c, int nrows_a, int ncols_a, int ncols_b)
 {
-
+  #pragma acc enter data copyin(a[0:nrows_a * ncols_a],b[0:ncols_a * ncols_b])
+  #pragma acc enter data create(c[0:nrows_a * ncols_b])
+  #pragma acc data present(a[0:nrows_a * ncols_a], b[0:ncols_a * ncols_b], c[0:nrows_a * ncols_b])
+    {
+   #pragma acc kernels loop independent
    for(int i=0; i<nrows_a; i++)
    {
-   
+     #pragma acc loop independent
      for(int j=0; j < ncols_b; j++)
       {
         c[i*ncols_b+j] = 0;
-
+        
+        #pragma acc loop independent reduction(+:sum)
         for(int k=0;k < ncols_a; k++)
         {
            c[i*ncols_b+j] += a[i*ncols_a+k] * b[k*ncols_b+j];
         }
       }
    }
+    }
 
 }
 
 int main(void)
 {
 
-  int problem_sizes[3] = {1<<3, 1<<5, 1<<8}; //sqrt of N
+    int problem_sizes[2] = {1<<3, 1<<5}#, 1<<8}; //sqrt of N
 
   for(int k=0; k<0; k++)
   {
