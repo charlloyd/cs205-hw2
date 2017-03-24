@@ -12,4 +12,4 @@ EXECUTABLE = matrixMul$(EXESUFFIX)
 SRCFILES = matrixMul.c
 CUDAFLAGS = -Mcuda
 
-include ../../common/common.mk
+include common.mk
