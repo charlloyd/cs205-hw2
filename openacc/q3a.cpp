@@ -26,9 +26,8 @@ void bfs(int *Adj, int n, int root)
         }
      }
 
-     std::cout<<std::endl;
-     for(int ii=0;ii<n;++ii) std::cout<<x[ii]<<" "; std::cout<<std::endl;
-     for(int ii=0;ii<n;++ii) std::cout<<last_x[ii]<<" "; std::cout<<std::endl;
+     print(x,1,n);
+     print(last_x,1,n);
 
 
      if (same(x,last_x,n)) break;
