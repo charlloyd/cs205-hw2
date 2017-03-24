@@ -22,12 +22,12 @@ void bfs(int *Adj, int n, int root)
 
         for(int k=0;k < n; k++)
         {
-           x[j] = x[j] || (Adj[j*n+k] && last_x[j]);
+           x[j] = x[j] || (Adj[j*n+k] && last_x[k]);
         }
      }
 
      print(x,1,n);
-     print(last_x,1,n);
+     //print(last_x,1,n);
 
 
      if (same(x,last_x,n)) break;
@@ -37,8 +37,8 @@ void bfs(int *Adj, int n, int root)
 
 int main(void)
 {
-  int data[16]={1,0,0,0,0,1,0,0,0,0,1,0,0,0,0,1};
+  int data[16]={0,0,0,0, 1,0,0,0, 0,1,0,0, 0,0,1,0};
 
-  bfs(data, 4, 1);
+  bfs(data, 4, 0);
 }
 
