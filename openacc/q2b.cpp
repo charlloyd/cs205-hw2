@@ -36,6 +36,8 @@ int main(void)
 
     int problem_sizes[2] = {1<<3, 1<<5};//, 1<<8}; //sqrt of N
     double time_spent;
+    clock_t begin;
+    clock_t end;
 
  for(int k=0; k<2; k++) {
      int N = problem_sizes[k];
@@ -44,9 +46,9 @@ int main(void)
      int *C = generate_graph(N,N);
       
 
-     clock_t begin = clock();
+     begin = clock();
      matrix_multiply(A,B,C,N,N,N);
-     clock_t end = clock();
+     end = clock();
     time_spent = (int)(end - begin) / (CLOCKS_PER_SEC/1000.0);
       
 
