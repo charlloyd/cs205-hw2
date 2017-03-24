@@ -34,7 +34,7 @@ void matrix_multiply(int *a, int *b, int *c, int nrows_a, int ncols_a, int ncols
 int main(void)
 {
 
-    int problem_sizes[2] = {pow(2,6), pow(2,10)};//, 1<<8}; //sqrt of N
+    int problem_sizes[2] = {2<<6, 2<<10};//, 1<<8}; //sqrt of N
     
   for(int k=0; k<0; k++) {
      int N = problem_sizes[k];
