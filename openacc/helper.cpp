@@ -8,7 +8,7 @@ void  copy_from_source_to_destination(int *x, int *y, int n)
 }
 
 
-int* generate_graph()
+int* generate_graph(nrows,ncols)
 {
    data = (int *) malloc(sizeof(int) * n * n);
    for(int i=0;i < nrows*ncols;++i) data[i] = rand()%2;
@@ -24,7 +24,7 @@ int min(int i, int j)
 }
 
 
-void print(int *data)
+void print(int *data,nrows,ncols)
 {
    for(int i=0;i<nrows;++i)
    {

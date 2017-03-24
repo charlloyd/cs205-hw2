@@ -29,9 +29,9 @@ int main(void)
   {
      int N = problem_sizes[k];
 
-     int *A = generate_graph();
-     int *B = generate_graph();
-     int *C = generate_graph();
+     int *A = generate_graph(N,N);
+     int *B = generate_graph(N,N);
+     int *C = generate_graph(N,N);
 
      clock_t begin = clock();
      matrix_multiply(A,B,C,N,N,N);
