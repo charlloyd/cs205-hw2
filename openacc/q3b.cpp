@@ -35,11 +35,6 @@ void apsp(int *A0, int n)
 int main(void)
 {
   int data[16] = {0,INT_MAX/2,-2,INT_MAX/2,4,0,3,INT_MAX/2,INT_MAX/2,INT_MAX/2,0,2,INT_MAX/2,-1,INT_MAX/2,0};
-
-  matrix A = matrix(data,4,4);
-
-  A.print();
-
-  apsp(A.data, 4);
+  apsp(data, 4);
 
 }
