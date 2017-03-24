@@ -1,11 +1,9 @@
 #include "helper.cpp"
-#include <stdarg.h>
 
-void bfs(int *Adj, int *x, int n, int root)
+void bfs(int *Adj, int n, int root)
 {
-   #pragma acc enter data copyin(Adj[0:n * n], x[0:n])
-
-   int *last_x = (int *)malloc(sizeof(int) * n);
+   int *x      = (int *) malloc(sizeof(int) * n);
+   int *last_x = (int *) malloc(sizeof(int) * n);
 
    for(int i=0;i < n; i++)
    {
@@ -40,16 +38,8 @@ void bfs(int *Adj, int *x, int n, int root)
 
 int main(void)
 {
+  int data[16]={1,0,0,0,0,1,0,0,0,0,1,0,0,0,0,1};
 
-  int N=6;
-  matrix D = matrix(N);
-  matrix X = matrix(N,1);
-  D.generate_graph();
-
-  
-  D.print();
-
-  bfs(D.data, X.data, N, 1);
-
+  bfs(data, 4, 1);
 }
 

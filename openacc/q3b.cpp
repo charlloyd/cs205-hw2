@@ -1,7 +1,6 @@
 #include "helper.cpp"
 #include <algorithm>
 #include <limits.h>
-#include <stdarg.h>
 
 void apsp(int *A0, int n)
 {
@@ -24,8 +23,7 @@ void apsp(int *A0, int n)
          }
       }
 
-      matrix P = matrix(Anp1,n,n);
-      P.print();
+      print(Anp1,n,n);
       getc(stdin);
 
       if (same(Anp1,An,n*n)) break;
