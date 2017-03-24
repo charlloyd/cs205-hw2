@@ -15,7 +15,7 @@ void matrix_multiply(int *a, int *b, int *c, int nrows_a, int ncols_a, int ncols
       {
         c[i*ncols_b+j] = 0;
         
-        #pragma acc loop independent reduction(+:sum)
+        #pragma acc loop independent reduction(+:c)
         for(int k=0;k < ncols_a; k++)
         {
            c[i*ncols_b+j] += a[i*ncols_a+k] * b[k*ncols_b+j];
@@ -23,6 +23,8 @@ void matrix_multiply(int *a, int *b, int *c, int nrows_a, int ncols_a, int ncols
       }
    }
     }
+    #pragma acc exit data copyout(c[0:nrows_a * ncols_b])
+    #pragma acc exit data delete(a[0:nrows_a * ncols_a], b[0:ncols_a * ncols_b])
 
 }
 
