@@ -3,17 +3,14 @@
 
 void matrix_multiply(int *a, int *b, int *c, int nrows_a, int ncols_a, int ncols_b)
 {
-   #pragma acc enter data copyin(a[0:nrows_a * ncols_a],b[0:ncols_a * ncols_b])
 
-   #pragma acc kernels loop independent
    for(int i=0; i<nrows_a; i++)
    {
-    #pragma acc kernels loop independent
+   
      for(int j=0; j < ncols_b; j++)
       {
         c[i*ncols_b+j] = 0;
 
-        #pragma acc loop independent reduction(+:sum)
         for(int k=0;k < ncols_a; k++)
         {
            c[i*ncols_b+j] += a[i*ncols_a+k] * b[k*ncols_b+j];
@@ -21,27 +18,10 @@ void matrix_multiply(int *a, int *b, int *c, int nrows_a, int ncols_a, int ncols
       }
    }
 
-  #pragma acc exit data copyout(C[0:nrows_a * ncols_b])
-
 }
 
 int main(void)
 {
-
-  matrix A = matrix(4,3);
-  matrix B = matrix(3,4);
-  matrix C = matrix(4,4);
-
-  A.set_to_random_int();
-  B.set_to_random_int();
-
-  matrix_multiply(A.data,B.data,C.data,A.nrows,A.ncols,B.ncols);
-
-  A.print();
-  std::cout<<std::endl;
-  B.print();
-  std::cout<<std::endl;
-  C.print();
 
   int problem_sizes[3] = {1<<3, 1<<5, 1<<8}; //sqrt of N
 
@@ -49,15 +29,12 @@ int main(void)
   {
      int N = problem_sizes[k];
 
-     matrix A = matrix(N,N);
-     matrix B = matrix(N,N);
-     matrix C = matrix(N,N);
-
-     A.set_to_random_int();
-     B.set_to_random_int();
+     int *A = generate_graph();
+     int *B = generate_graph();
+     int *C = generate_graph();
 
      clock_t begin = clock();
-     matrix_multiply(A.data,B.data,C.data,A.nrows,A.ncols,B.ncols);
+     matrix_multiply(A,B,C,N,N,N);
      clock_t end = clock();
      int time_spent = (int)(end - begin) / CLOCKS_PER_SEC;
 

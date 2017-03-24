@@ -1,26 +1,26 @@
 q2b_seq: q2b.cpp helper.cpp
 	git pull
-	g++ q2b.cpp -o q2b_seq -std=c++0x
+	g++ q2b.cpp -o q2b_seq
 
 q3a_seq: q3a.cpp helper.cpp
 	git pull
-	g++ q3a.cpp -o q3a_seq -std=c++0x
+	g++ q3a.cpp -o q3a_seq
 
 q3b_seq: q3b.cpp helper.cpp
 	git pull
-	g++ q3b.cpp -o q3b_seq -std=c++0x
+	g++ q3b.cpp -o q3b_seq
 
 q2b_para: q2b.cpp helper.cpp
 	git pull
-	pgc++ -acc q2b.cpp -Minfo=accel -o q2b_para -std=c++0x
+	pgc++ -acc q2b.cpp -Minfo=accel -o q2b_para
 
 q3a_para: q3a.cpp helper.cpp
 	git pull
-	pgc++ -acc q3a.cpp -Minfo=accel -o q3a_para -std=c++0x
+	pgc++ -acc q3a.cpp -Minfo=accel -o q3a_para
 
 q3b_para: q3b.cpp helper.cpp
 	git pull
-	pgc++ -acc q3a.cpp -Minfo=accel -o q3b_para -std=c++0x
+	pgc++ -acc q3a.cpp -Minfo=accel -o q3b_para
 
 all_seq: q3b.cpp q3a.cpp q2b.cpp
 	make q2b_seq
