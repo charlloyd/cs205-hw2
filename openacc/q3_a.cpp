@@ -16,11 +16,11 @@ void bfs(int *Adj, int *x, int n, int root)
    {
      copy_from_source_to_destination(x, last_x, n);
 
-
-     for(int j=0; j < n; j++)
+    #pragma acc kernels loop independent
+    for(int j=0; j < n; j++)
      {
         x[j] = 0;
-
+        #pragma acc kernels loop independent
         for(int k=0;k < n; k++)
         {
            x[j] = x[j] || (Adj[j*n+k] && last_x[j]);
@@ -45,6 +45,6 @@ int main(void)
 
   //D.print();
 
-  //bfs(D.data, X.data, N, 1);
+  bfs(D.data, X.data, N, 1);
 
 }
