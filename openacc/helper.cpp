@@ -10,9 +10,9 @@ void  copy_from_source_to_destination(int *x, int *y, int n)
 
 int* generate_graph(int nrows,int ncols)
 {
-   int *data = (int *) malloc(sizeof(int) * n * n);
+   int *data = (int *) malloc(sizeof(int) * ncols * nrows);
    for(int i=0;i < nrows*ncols;++i) data[i] = rand()%2;
-   return data
+   return data;
 }
 
 
@@ -42,7 +42,6 @@ void print(int *data,int nrows,int ncols)
 
 bool same(int *x, int *y, int n)
 {
-   
 
    for(int k=0;k<n;++k)
    {
