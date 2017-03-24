@@ -37,7 +37,6 @@ int main(void)
 
     int problem_sizes[2] = {1<<3, 1<<5};//, 1<<8}; //sqrt of N
     
-    printf("%d", 5);
   for(int k=0; k<0; k++)
   {
      int N = problem_sizes[k];
@@ -46,15 +45,15 @@ int main(void)
      int *B = generate_graph(N,N);
      int *C = generate_graph(N,N);
       
-      
+      printf("%d", 3);
      clock_t begin = clock();
      matrix_multiply(A,B,C,N,N,N);
      clock_t end = clock();
      int time_spent = (int)(end - begin) / CLOCKS_PER_SEC;
       
-
+printf("%d", 4);
      std::cout<<"problem size: "<<N*N<<" time:"<< time_spent << std::endl;
-
+    printf("%d", 5);
   }
 
 
