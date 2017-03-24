@@ -24,7 +24,6 @@ void apsp(int *A0, int n)
       }
 
       print(Anp1,n,n);
-      getc(stdin);
 
       if (same(Anp1,An,n*n)) break;
       copy_from_source_to_destination(Anp1, An  , n*n);
