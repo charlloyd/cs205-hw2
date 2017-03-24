@@ -16,11 +16,11 @@ void bfs(int *Adj, int n, int root)
    {
      copy_from_source_to_destination(x, last_x, n);
 
-       #pragma acc kernels loop independent
+    #pragma acc kernels loop independent
      for(int j=0; j < n; j++)
      {
         x[j] = 0;
-         #pragma acc kernels loop independent
+        #pragma acc kernels loop independent
         for(int k=0;k < n; k++)
         {
            x[j] = x[j] || (Adj[j*n+k] && last_x[k]);
@@ -34,8 +34,8 @@ void bfs(int *Adj, int n, int root)
      if (same(x,last_x,n)) break;
 
    }
-#pragma acc exit data copyout(x[0:n])
-#pragma acc exit data delete(Adj[0:n * n], last_x[0:n])
+  #pragma acc exit data copyout(x[0:n])
+  #pragma acc exit data delete(Adj[0:n * n], last_x[0:n])
 }
 
 int main(void)
