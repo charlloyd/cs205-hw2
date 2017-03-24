@@ -37,8 +37,7 @@ int main(void)
 
     int problem_sizes[2] = {1<<3, 1<<5};//, 1<<8}; //sqrt of N
     
-  for(int k=0; k<0; k++)
-  {
+  for(int k=0; k<0; k++) {
      int N = problem_sizes[k];
 
      int *A = generate_graph(N,N);
