@@ -36,6 +36,7 @@ int main(void)
 {
 
     int problem_sizes[2] = {1<<3, 1<<5};//, 1<<8}; //sqrt of N
+    
     printf("%d", 5);
   for(int k=0; k<0; k++)
   {
